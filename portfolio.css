@@ -1,0 +1,133 @@
+* {
+  font-family: cursive;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  padding-top: 5%;
+  padding-left: 8%;
+  padding-right: 8%;
+  padding-bottom: 8%;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+#container {
+  width: 90%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 30px;
+  padding-top: 5%;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-bottom: 5%;
+  border-radius: 20px;
+  background: rgba(4, 8, 26, 0.65);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.25);
+
+}
+
+#img {
+  width: 390px;
+  height: auto;
+  border-radius: 20px;
+  display: block;
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.25);
+}
+.text-content {
+  padding-left: 2px;
+}
+
+h1 {
+  font-size: 50px;
+  text-align: left;
+  margin-top: 0%;
+  margin-bottom: 5px;
+  color: #fd9a06;
+             text-shadow: -2px 6px 2px #0e2d3f;
+}
+
+.skills {
+  font-weight: bold;
+  font-size: 14px;
+  color: #22d3ee;
+}
+
+.intro {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: rgb(174, 183, 78);
+  text-shadow: 0 0 55px rgba(172, 248, 7, 0.4);
+}
+#projects {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #e814da;
+  text-shadow: 0 0 55px rgba(172, 248, 7, 0.4);
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  color: #22d3ee;
+  transition: all 0.3s ease;
+}
+#marks {
+  font-size: 25px;
+  margin-bottom: 18px;
+  color: #e8e414;
+  text-shadow: 0 0 55px rgba(172, 248, 7, 0.4);
+}
+#marksBox {
+  border-radius: 20px; 
+  margin-top: 100px; 
+  background: rgba(4, 8, 26, 0.65);
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  padding-top:20px;
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.25);
+
+}
+#marks table {
+  width: 80%; 
+  height: 100%; 
+  margin: 0 auto;
+  color: #22d3ee;
+  
+}
+
+#marks th, #marks td {
+  padding: 15px; 
+  text-align: center; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); 
+
+}
+#education {
+  padding-left: 15px;
+  margin-bottom: 0px;
+  font-family: monospace;
+  color : #22d3ee;
+}
+#contact{
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  padding: 20px;
+  border-radius: 20px;
+  margin-top:5%;
+  display:grid;
+  grid-template-rows: 1fr  1fr ;
+  grid-template-columns: 1fr 1fr 1fr ;
+
+  box-shadow: 0 0 30px rgba(34, 211, 238, 0.25);
+  padding-bottom: 20px;
+}
+h2{
+    padding-left: 15px;
+  margin-bottom: 0px;
+  font-family: monospace;
+  color : #22d3ee;
+  font-size: 180%;
+
+
+}
