@@ -42,7 +42,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex items-center justify-center pt-36 sm:pt-40 lg:pt-44 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
+      className="relative min-h-0 lg:min-h-[90vh] flex items-start lg:items-center justify-center pt-24 sm:pt-32 lg:pt-40 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: High-Impact Positioning (7 Cols) */}
