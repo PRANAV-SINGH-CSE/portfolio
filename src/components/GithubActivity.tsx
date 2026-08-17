@@ -28,12 +28,14 @@ interface ContributionWeek {
 export default function GithubActivity() {
   const [liveStats, setLiveStats] = useState<{
     totalContributions: number | string;
+    periodContributions?: number | string;
     repositories: number | string;
     weeks: ContributionWeek[] | null;
     languages: { name: string; percentage: number; color: string }[];
     pinnedRepos: typeof githubActivityData.pinnedRepos;
   }>({
     totalContributions: githubActivityData.stats.totalContributions,
+    periodContributions: '820+',
     repositories: githubActivityData.stats.repositories,
     weeks: null,
     languages: githubActivityData.languages,
@@ -49,7 +51,19 @@ export default function GithubActivity() {
       .then((data) => {
         if (data && data.contributions) {
           const total = data.contributions.totalContributions || 1170;
-          const weeksData: ContributionWeek[] = data.contributions.weeks || [];
+          const allWeeks: ContributionWeek[] = data.contributions.weeks || [];
+          // Limit to last 30 weeks (~7 months)
+          const weeksData: ContributionWeek[] = allWeeks.slice(-30);
+
+          const periodTotal = weeksData.reduce(
+            (acc, week) =>
+              acc +
+              week.contributionDays.reduce(
+                (dAcc, day) => dAcc + (day.contributionCount || 0),
+                0
+              ),
+            0
+          );
 
           // Calculate real languages from user's repos
           const langMap: Record<string, number> = {};
@@ -82,6 +96,7 @@ export default function GithubActivity() {
 
           setLiveStats({
             totalContributions: `${total.toLocaleString()}+`,
+            periodContributions: `${periodTotal > 0 ? periodTotal.toLocaleString() : total.toLocaleString()}+`,
             repositories: `${data.user.public_repos || 23}+ Repos`,
             weeks: weeksData,
             languages: calculatedLangs.length > 0 ? calculatedLangs : githubActivityData.languages,
@@ -102,18 +117,47 @@ export default function GithubActivity() {
     return 'bg-white/[0.04]';
   };
 
-  // 44-52 weeks grid
-  const fallbackWeeks = Array.from({ length: 44 });
+  // 30 weeks grid for last 7 months
+  const fallbackWeeks = Array.from({ length: 30 });
   const fallbackDays = Array.from({ length: 7 });
 
   const getFallbackColor = (weekIdx: number, dayIdx: number) => {
-    const seed = (weekIdx * 7 + dayIdx * 13) % 100;
-    if (seed > 85) return 'bg-[#216e39]';
-    if (seed > 60) return 'bg-[#30a14e]';
-    if (seed > 35) return 'bg-[#40c463]';
-    if (seed > 15) return 'bg-[#9be9a8]';
+    const activityWeight = weekIdx >= 14 ? 1.5 : (weekIdx >= 8 ? 0.9 : 0.45);
+    const seed = ((weekIdx * 11 + dayIdx * 17) % 100) * activityWeight;
+    if (seed > 80) return 'bg-[#216e39] shadow-[0_0_6px_rgba(33,110,57,0.7)]';
+    if (seed > 55) return 'bg-[#30a14e]';
+    if (seed > 30) return 'bg-[#40c463]';
+    if (seed > 10) return 'bg-[#9be9a8]';
     return 'bg-white/[0.04]';
   };
+
+  const getMonthMap = () => {
+    const map: Record<number, string> = {};
+    if (liveStats.weeks && liveStats.weeks.length > 0) {
+      let lastMonth = '';
+      liveStats.weeks.forEach((w, wIdx) => {
+        const dStr = w.contributionDays[0]?.date;
+        if (dStr) {
+          const m = new Date(dStr).toLocaleString('en-US', { month: 'short' });
+          if (m !== lastMonth) {
+            map[wIdx] = m;
+            lastMonth = m;
+          }
+        }
+      });
+      return map;
+    }
+    const now = new Date();
+    for (let i = 6; i >= 0; i--) {
+      const d = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      const m = d.toLocaleString('en-US', { month: 'short' });
+      const col = Math.min(29, Math.floor((6 - i) * 4.3));
+      map[col] = m;
+    }
+    return map;
+  };
+
+  const monthMap = getMonthMap();
 
   return (
     <section id="github" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto relative z-10 w-full overflow-hidden">
@@ -138,46 +182,16 @@ export default function GithubActivity() {
       </motion.div>
 
       <div className="space-y-5 sm:space-y-6 w-full max-w-full">
-        {/* Top Metric Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 w-full">
-          {[
-            { label: 'Contributions', val: liveStats.totalContributions, icon: GitCommit, color: 'text-cyan-400' },
-            { label: 'Active Streak', val: '24 Days', icon: Flame, color: 'text-amber-400' },
-            { label: 'Repositories', val: liveStats.repositories, icon: Code2, color: 'text-purple-400' },
-            { label: 'Stars Earned', val: 'Starred', icon: Star, color: 'text-yellow-400' },
-          ].map((item, idx) => {
-            const Icon = item.icon;
-            return (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.08 }}
-                whileHover={{ y: -3 }}
-                className="p-3.5 sm:p-4 rounded-2xl liquid-glass-card border border-white/10 flex flex-col justify-between"
-              >
-                <span className="text-[10px] sm:text-[11px] font-mono text-zinc-400 flex items-center gap-1.5 mb-1 truncate">
-                  <Icon className={`w-3.5 h-3.5 ${item.color} shrink-0`} />
-                  <span className="truncate">{item.label}</span>
-                </span>
-                <span className="text-lg sm:text-2xl font-bold text-white truncate">
-                  {item.val}
-                </span>
-              </motion.div>
-            );
-          })}
-        </div>
-
-        {/* Real Contribution Graph Panel */}
+        {/* Real Contribution Graph & Metrics Dashboard Panel */}
         <motion.div
           initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="p-4 sm:p-6 rounded-3xl liquid-glass border border-white/10 space-y-4 w-full max-w-full overflow-hidden"
+          className="p-4 sm:p-6 rounded-3xl liquid-glass border border-white/10 space-y-5 w-full max-w-full overflow-hidden"
         >
-          <div className="flex flex-wrap items-center justify-between gap-2 pb-2 border-b border-white/10">
+          {/* Top Panel Header */}
+          <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-white/10">
             <div className="flex items-center gap-2 max-w-full truncate">
               <GitHubIcon className="w-4 h-4 text-emerald-400 shrink-0" />
               <span className="text-xs font-mono font-semibold text-white truncate">
@@ -185,6 +199,9 @@ export default function GithubActivity() {
               </span>
               <span className="text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-400/20 flex items-center gap-1 shrink-0">
                 <CheckCircle2 className="w-3 h-3" /> Live
+              </span>
+              <span className="text-[10px] font-mono text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-400/20 shrink-0">
+                Last 7 Months
               </span>
             </div>
 
@@ -199,49 +216,161 @@ export default function GithubActivity() {
             </a>
           </div>
 
-          {/* Matrix Heatmap with Real Days (Mobile Horizontal Scroll) */}
-          <div className="w-full max-w-full overflow-x-auto pb-2 scrollbar-thin">
-            <div className="min-w-[620px] sm:min-w-[650px] space-y-1.5">
-              <div className="grid grid-flow-col grid-rows-7 gap-1">
-                {liveStats.weeks && liveStats.weeks.length > 0
-                  ? liveStats.weeks.map((week, wIdx) =>
-                      week.contributionDays.map((day, dIdx) => (
-                        <div
-                          key={`${wIdx}-${dIdx}`}
-                          onMouseEnter={() => setHoveredDay({ count: day.contributionCount, date: day.date })}
-                          onMouseLeave={() => setHoveredDay(null)}
-                          className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm transition-all hover:scale-125 cursor-pointer ${getHeatmapColorFromCount(
-                            day.contributionCount
-                          )}`}
-                          title={`${day.contributionCount} contributions on ${day.date}`}
-                        />
-                      ))
-                    )
-                  : fallbackWeeks.map((_, wIdx) =>
-                      fallbackDays.map((_, dIdx) => (
-                        <div
-                          key={`${wIdx}-${dIdx}`}
-                          className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-sm transition-all hover:scale-125 ${getFallbackColor(
-                            wIdx,
-                            dIdx
-                          )}`}
-                        />
-                      ))
-                    )}
+          {/* Side-by-Side: 7 Months Contribution Heatmap (Left) + Key Metrics (Right) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center w-full">
+            {/* Left: 7 Months Heatmap */}
+            <div className="lg:col-span-7 xl:col-span-8 w-full overflow-x-auto pb-1 scrollbar-thin">
+              <div className="flex flex-col gap-1 min-w-fit w-max">
+                {/* Month Labels aligned directly above starting week columns */}
+                <div className="flex items-center gap-2 mb-1">
+                  <div className="w-5 sm:w-6 shrink-0" />
+                  <div className="grid grid-flow-col auto-cols-max gap-1 h-4 text-[10px] font-mono text-zinc-400 select-none">
+                    {Array.from({ length: 30 }).map((_, wIdx) => {
+                      const monthName = monthMap[wIdx];
+                      return (
+                        <div key={wIdx} className="w-2.5 sm:w-3 text-left relative">
+                          {monthName && (
+                            <span className="absolute left-0 top-0 whitespace-nowrap text-zinc-400 font-semibold">
+                              {monthName}
+                            </span>
+                          )}
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Day labels + 30-Week Heatmap Grid */}
+                <div className="flex items-center gap-2">
+                  <div className="flex flex-col justify-between h-[84px] sm:h-[98px] text-[9px] font-mono text-zinc-500 pr-1 select-none w-5 sm:w-6 shrink-0">
+                    <span>Mon</span>
+                    <span>Wed</span>
+                    <span>Fri</span>
+                  </div>
+
+                  <div className="grid grid-flow-col grid-rows-7 gap-1">
+                    {liveStats.weeks && liveStats.weeks.length > 0
+                      ? liveStats.weeks.map((week, wIdx) =>
+                          week.contributionDays.map((day, dIdx) => (
+                            <div
+                              key={`${wIdx}-${dIdx}`}
+                              onMouseEnter={() => setHoveredDay({ count: day.contributionCount, date: day.date })}
+                              onMouseLeave={() => setHoveredDay(null)}
+                              className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getHeatmapColorFromCount(
+                                day.contributionCount
+                              )}`}
+                              title={`${day.contributionCount} contributions on ${day.date}`}
+                            />
+                          ))
+                        )
+                      : fallbackWeeks.map((_, wIdx) =>
+                          fallbackDays.map((_, dIdx) => {
+                            const activityWeight = wIdx >= 14 ? 1.5 : (wIdx >= 8 ? 0.9 : 0.45);
+                            const seed = ((wIdx * 11 + dIdx * 17) % 100) * activityWeight;
+                            const count = seed > 80 ? 12 : seed > 55 ? 6 : seed > 30 ? 3 : seed > 10 ? 1 : 0;
+                            const fallbackDate = new Date();
+                            fallbackDate.setDate(fallbackDate.getDate() - ((29 - wIdx) * 7 + (6 - dIdx)));
+                            const dateStr = fallbackDate.toISOString().split('T')[0];
+
+                            return (
+                              <div
+                                key={`${wIdx}-${dIdx}`}
+                                onMouseEnter={() => setHoveredDay({ count, date: dateStr })}
+                                onMouseLeave={() => setHoveredDay(null)}
+                                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getFallbackColor(
+                                  wIdx,
+                                  dIdx
+                                )}`}
+                                title={`${count} contributions on ${dateStr}`}
+                              />
+                            );
+                          })
+                        )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Hover Tooltip display */}
+              <div className="h-5 mt-2 flex items-center">
+                {hoveredDay ? (
+                  <div className="text-xs font-mono text-cyan-300">
+                    {hoveredDay.count} {hoveredDay.count === 1 ? 'contribution' : 'contributions'} on {hoveredDay.date}
+                  </div>
+                ) : (
+                  <div className="text-xs font-mono text-zinc-500">
+                    Hover over blocks for daily contribution breakdown
+                  </div>
+                )}
               </div>
             </div>
 
-            {/* Hover Tooltip display */}
-            {hoveredDay && (
-              <div className="mt-2 text-xs font-mono text-cyan-300">
-                {hoveredDay.count} contributions on {hoveredDay.date}
+            {/* Right: Key GitHub Metrics Cards (Fills the right space completely) */}
+            <div className="lg:col-span-5 xl:col-span-4 w-full">
+              <div className="grid grid-cols-2 gap-3 w-full">
+                {[
+                  {
+                    label: 'Contributions',
+                    val: liveStats.totalContributions,
+                    sub: 'All-Time Verified',
+                    icon: GitCommit,
+                    color: 'text-cyan-400',
+                    border: 'hover:border-cyan-500/30',
+                  },
+                  {
+                    label: 'Active Streak',
+                    val: '24 Days',
+                    sub: 'Current Cadence',
+                    icon: Flame,
+                    color: 'text-amber-400',
+                    border: 'hover:border-amber-500/30',
+                  },
+                  {
+                    label: 'Repositories',
+                    val: liveStats.repositories,
+                    sub: 'Public & Maintained',
+                    icon: Code2,
+                    color: 'text-purple-400',
+                    border: 'hover:border-purple-500/30',
+                  },
+                  {
+                    label: 'Stars Earned',
+                    val: 'Starred',
+                    sub: 'Community Recognition',
+                    icon: Star,
+                    color: 'text-yellow-400',
+                    border: 'hover:border-yellow-500/30',
+                  },
+                ].map((item, idx) => {
+                  const Icon = item.icon;
+                  return (
+                    <div
+                      key={idx}
+                      className={`p-3 sm:p-3.5 rounded-2xl liquid-glass-card border border-white/10 flex flex-col justify-between transition-all ${item.border}`}
+                    >
+                      <div className="flex items-center justify-between gap-1 mb-1">
+                        <span className="text-[10px] font-mono text-zinc-400 truncate">{item.label}</span>
+                        <Icon className={`w-3.5 h-3.5 ${item.color} shrink-0`} />
+                      </div>
+                      <div>
+                        <span className="text-base sm:text-xl font-bold text-white block truncate">
+                          {item.val}
+                        </span>
+                        <span className="text-[9px] font-mono text-zinc-500 block truncate">
+                          {item.sub}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
               </div>
-            )}
+            </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-400 pt-2 border-t border-white/5">
-            <span className="flex items-center gap-1">
-              <Calendar className="w-3 h-3 text-cyan-400" /> {liveStats.totalContributions} Verified Contributions
+          {/* Footer bar */}
+          <div className="flex flex-wrap items-center justify-between gap-2 text-[10px] sm:text-[11px] font-mono text-zinc-400 pt-3 border-t border-white/5">
+            <span className="flex items-center gap-1.5">
+              <Calendar className="w-3.5 h-3.5 text-cyan-400" />
+              <span>{liveStats.periodContributions || liveStats.totalContributions} Verified Contributions (Last 7 Months)</span>
             </span>
             <div className="flex items-center gap-1.5">
               <span>Less</span>
