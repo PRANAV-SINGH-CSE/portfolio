@@ -6,12 +6,12 @@ import {
   Menu,
   X,
   FileText,
-  Sparkles,
   Terminal,
   Layers,
   Briefcase,
   User,
   Mail,
+  Sparkles,
   Zap,
 } from 'lucide-react';
 
@@ -64,34 +64,32 @@ export default function Navbar({
         } ${isScrolled ? 'py-3' : 'py-4 sm:py-5'}`}
       >
         <div className="max-w-6xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
-          {/* Left Capsule: Brand & Futuristic Logo Badge */}
+          {/* Left Capsule: Thicker Brand & Cyber Emblem Logo */}
           <motion.button
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             onClick={() => scrollToSection('hero')}
-            className="flex items-center gap-2.5 sm:gap-3 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-full bg-gradient-to-b from-[#181f33]/90 via-[#0d1322]/95 to-[#050813] border border-white/[0.12] shadow-[0_8px_30px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:shadow-[0_0_25px_rgba(6,182,212,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] transition-all cursor-pointer group shrink-0"
+            className="h-12 sm:h-14 flex items-center gap-3 px-4 sm:px-5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_10px_35px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.4),inset_0_1.5px_1px_rgba(255,255,255,0.35)] transition-all cursor-pointer group shrink-0"
             aria-label="Scroll to home"
           >
-            {/* Emblem Icon Squircle */}
-            <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-black/60 border border-white/20 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400/60 shadow-[inset_0_0_8px_rgba(6,182,212,0.3)] transition-all">
-              <Zap className="w-3.5 h-3.5 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+            {/* Cyber Emblem App Icon Squircle */}
+            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-[#0b1329] to-[#16203a] border border-cyan-400/40 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400 shadow-[inset_0_0_10px_rgba(6,182,212,0.35),0_0_12px_rgba(6,182,212,0.2)] transition-all">
+              <Zap className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
             </div>
 
-            {/* Futuristic Uppercase Brand Name */}
-            <div className="flex items-center gap-1.5">
-              <span className="font-sans font-extrabold tracking-[0.18em] text-xs sm:text-sm text-white uppercase group-hover:text-cyan-300 transition-colors whitespace-nowrap">
-                PRANAV SINGH
-              </span>
-            </div>
+            {/* Bold Display Brand Name */}
+            <span className="font-extrabold tracking-[0.2em] text-xs sm:text-[14px] text-white uppercase group-hover:text-cyan-300 transition-colors whitespace-nowrap">
+              PRANAV SINGH
+            </span>
           </motion.button>
 
-          {/* Right Capsule: Desktop Cyber Navigation Pill */}
+          {/* Right Capsule: Thicker Cyber Navigation Pill */}
           <motion.nav
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-            className="hidden md:flex items-center gap-1 sm:gap-1.5 px-4 lg:px-6 py-2 rounded-full bg-gradient-to-b from-[#181f33]/90 via-[#0d1322]/95 to-[#050813] border border-white/[0.12] shadow-[0_8px_32px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] backdrop-blur-xl"
+            className="hidden md:flex h-12 sm:h-14 items-center gap-1.5 sm:gap-2 px-5 lg:px-7 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl"
           >
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
@@ -99,10 +97,10 @@ export default function Navbar({
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`relative px-3.5 py-1.5 rounded-full text-[11px] lg:text-xs font-bold tracking-[0.14em] uppercase transition-all duration-200 cursor-pointer whitespace-nowrap group ${
+                  className={`relative px-3.5 sm:px-4 py-2 rounded-full text-xs font-extrabold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer whitespace-nowrap group ${
                     isActive
-                      ? 'text-cyan-300 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]'
-                      : 'text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.04]'
+                      ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
+                      : 'text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.05]'
                   }`}
                 >
                   <span>{item.label}</span>
@@ -112,7 +110,7 @@ export default function Navbar({
                     <motion.span
                       layoutId="activeNavIndicator"
                       transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                      className="absolute -bottom-1 left-2 right-2 h-[2px] rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_22px_#06b6d4]"
+                      className="absolute -bottom-1.5 left-2.5 right-2.5 h-[2.5px] rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4]"
                     />
                   )}
                 </button>
@@ -120,14 +118,14 @@ export default function Navbar({
             })}
 
             {/* Integrated Resume Button inside Capsule */}
-            <div className="h-4 w-[1px] bg-white/15 mx-1" />
+            <div className="h-5 w-[1px] bg-white/20 mx-1.5" />
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold tracking-[0.12em] uppercase text-zinc-300 hover:text-white hover:bg-white/[0.08] hover:border-white/20 border border-transparent transition-all cursor-pointer whitespace-nowrap"
+              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase text-zinc-200 bg-white/[0.06] hover:bg-white/[0.12] hover:text-white border border-white/15 hover:border-white/30 transition-all cursor-pointer whitespace-nowrap shadow-sm"
             >
-              <FileText className="w-3 h-3 text-purple-400" />
+              <FileText className="w-3.5 h-3.5 text-purple-400" />
               <span>RESUME</span>
-              <span className="text-[10px] text-cyan-400 opacity-80">↗</span>
+              <span className="text-[11px] text-cyan-400 opacity-90">↗</span>
             </button>
           </motion.nav>
 
@@ -135,18 +133,18 @@ export default function Navbar({
           <div className="flex md:hidden items-center gap-2">
             <button
               onClick={onOpenResume}
-              className="flex items-center gap-1 px-3 py-1.5 rounded-full bg-gradient-to-b from-[#181f33]/90 via-[#0d1322]/95 to-[#050813] border border-white/[0.12] text-[11px] font-bold tracking-wider uppercase text-zinc-200 shadow-[0_4px_16px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] cursor-pointer"
+              className="h-11 flex items-center gap-1.5 px-3.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] text-xs font-extrabold tracking-wider uppercase text-zinc-200 shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] cursor-pointer"
             >
-              <FileText className="w-3 h-3 text-purple-400" />
+              <FileText className="w-3.5 h-3.5 text-purple-400" />
               <span>CV</span>
             </button>
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation menu"
-              className="w-9 h-9 rounded-full bg-gradient-to-b from-[#181f33]/90 via-[#0d1322]/95 to-[#050813] border border-white/[0.12] shadow-[0_4px_16px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.2)] flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer"
             >
-              {mobileMenuOpen ? <X className="w-4 h-4 text-cyan-400" /> : <Menu className="w-4 h-4 text-zinc-300" />}
+              {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5 text-zinc-300" />}
             </button>
           </div>
         </div>
@@ -171,7 +169,7 @@ export default function Navbar({
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -20, scale: 0.95 }}
               transition={{ type: 'spring', stiffness: 300, damping: 25 }}
-              className="fixed top-18 left-4 right-4 bg-gradient-to-b from-[#181f33]/95 via-[#0d1322]/95 to-[#050813]/98 rounded-3xl p-5 border border-white/20 shadow-2xl space-y-3"
+              className="fixed top-20 left-4 right-4 bg-gradient-to-b from-[#182035]/98 via-[#0e1424]/98 to-[#060914] rounded-3xl p-5 border border-white/20 shadow-2xl space-y-3"
             >
               <div className="flex items-center justify-between px-2 pb-2 border-b border-white/10">
                 <span className="text-[11px] font-mono uppercase tracking-widest text-cyan-400 font-semibold flex items-center gap-1.5">
@@ -185,7 +183,7 @@ export default function Navbar({
                 </button>
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex flex-col gap-1.5">
                 {navItems.map((item) => {
                   const IconComponent = item.icon;
                   const isActive = activeSection === item.id;
@@ -193,7 +191,7 @@ export default function Navbar({
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`flex items-center justify-between px-4 py-2.5 rounded-2xl text-xs font-bold tracking-[0.14em] uppercase transition-all text-left ${
+                      className={`flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-extrabold tracking-[0.16em] uppercase transition-all text-left ${
                         isActive
                           ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
                           : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
@@ -204,7 +202,7 @@ export default function Navbar({
                         <span>{item.label}</span>
                       </div>
                       {isActive && (
-                        <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]" />
+                        <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_#06b6d4]" />
                       )}
                     </button>
                   );
@@ -217,7 +215,7 @@ export default function Navbar({
                     setMobileMenuOpen(false);
                     onOpenResume();
                   }}
-                  className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-xs font-bold tracking-widest uppercase text-white bg-gradient-to-r from-purple-500 to-pink-500 border border-white/20 shadow-[0_0_20px_rgba(168,85,247,0.35)] cursor-pointer"
+                  className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl text-xs font-extrabold tracking-widest uppercase text-white bg-gradient-to-r from-purple-500 to-pink-500 border border-white/20 shadow-[0_0_20px_rgba(168,85,247,0.35)] cursor-pointer"
                 >
                   <FileText className="w-4 h-4" />
                   <span>VIEW & DOWNLOAD RESUME</span>
