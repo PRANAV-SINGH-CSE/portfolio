@@ -295,17 +295,17 @@ export default function Contact() {
                   />
                 </div>
 
-                {/* Submit Button */}
+                {/* Submit Button in Pure Liquid Glass */}
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full py-3.5 rounded-2xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-4 rounded-2xl text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-gradient-to-b from-[#2e3c5e]/90 via-[#1a233b]/95 to-[#0b1020] border border-cyan-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),inset_0_1.5px_1.5px_rgba(255,255,255,0.4),0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-300 hover:shadow-[0_0_35px_rgba(6,182,212,0.6),inset_0_1.5px_1.5px_rgba(255,255,255,0.6)] backdrop-blur-2xl transition-all cursor-pointer flex items-center justify-center gap-2.5 disabled:opacity-50 group"
                 >
                   {isSubmitting ? (
                     <span>Transmitting Message...</span>
                   ) : (
                     <>
-                      <Send className="w-4 h-4" />
+                      <Send className="w-4 h-4 text-cyan-300 group-hover:translate-x-0.5 transition-transform" />
                       <span>Send Message</span>
                     </>
                   )}

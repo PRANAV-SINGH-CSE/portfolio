@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Menu,
@@ -35,14 +36,38 @@ export default function Navbar({
   onOpenResume,
   isHidden = false,
 }: NavbarProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   useEffect(() => {
+    let lastScroll = window.scrollY;
+    let ticking = false;
+
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const currentScroll = window.scrollY;
+
+          // Top of page: always visible
+          if (currentScroll < 50) {
+            setIsNavVisible(true);
+          } else if (currentScroll > lastScroll + 25) {
+            // Scrolling down past threshold -> hide
+            setIsNavVisible(false);
+          } else if (currentScroll < lastScroll - 20) {
+            // Scrolling up past threshold -> show
+            setIsNavVisible(true);
+          }
+
+          lastScroll = currentScroll;
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -59,81 +84,108 @@ export default function Navbar({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-8 lg:px-12 w-full ${
-          isHidden ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
-        } ${isScrolled ? 'py-3' : 'py-4 sm:py-5'}`}
+        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 w-full py-4 sm:py-5 ${
+          isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
+        }`}
       >
-        <div className="w-full flex items-center justify-between gap-3 sm:gap-4">
-          {/* Left Capsule: Thicker Brand & Cyber Emblem Logo */}
+        <div className="relative w-full flex items-center justify-between">
+          {/* Left Corner: Brand & Profile Picture Avatar Badge */}
           <motion.button
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
             onClick={() => scrollToSection('hero')}
-            className="h-12 sm:h-14 flex items-center gap-3 px-4 sm:px-5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_10px_35px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.4),inset_0_1.5px_1px_rgba(255,255,255,0.35)] transition-all cursor-pointer group shrink-0"
+            className="h-12 sm:h-14 flex items-center gap-3 px-3.5 sm:px-4.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_10px_35px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.4),inset_0_1.5px_1px_rgba(255,255,255,0.35)] transition-all cursor-pointer group shrink-0 z-10"
             aria-label="Scroll to home"
           >
-            {/* Cyber Emblem App Icon Squircle */}
-            <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-xl bg-gradient-to-tr from-[#0b1329] to-[#16203a] border border-cyan-400/40 flex items-center justify-center group-hover:scale-105 group-hover:border-cyan-400 shadow-[inset_0_0_10px_rgba(6,182,212,0.35),0_0_12px_rgba(6,182,212,0.2)] transition-all">
-              <Zap className="w-4 h-4 text-cyan-400 group-hover:text-cyan-300 transition-colors" />
+            {/* Profile Avatar Container with Glowing Rim */}
+            <div className="relative w-8 h-8 sm:w-9 sm:h-9 rounded-full overflow-hidden border border-cyan-400/50 shadow-[0_0_12px_rgba(6,182,212,0.35)] group-hover:scale-105 group-hover:border-cyan-300 transition-all shrink-0 bg-[#0e1424]">
+              <Image
+                src="/profile.jpg"
+                alt="Pranav Singh"
+                width={36}
+                height={36}
+                className="w-full h-full object-cover"
+                priority
+              />
             </div>
 
             {/* Bold Display Brand Name */}
-            <span className="font-extrabold tracking-[0.2em] text-xs sm:text-[14px] text-white uppercase group-hover:text-cyan-300 transition-colors whitespace-nowrap">
+            <span className="font-extrabold tracking-[0.2em] text-xs sm:text-[14px] text-white uppercase group-hover:text-cyan-300 transition-colors whitespace-nowrap pr-1 sm:pr-2">
               PRANAV SINGH
             </span>
           </motion.button>
 
-          {/* Right Capsule: Thicker Cyber Navigation Pill */}
-          <motion.nav
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
-            className="hidden md:flex h-12 sm:h-14 items-center gap-1.5 sm:gap-2 px-5 lg:px-7 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl"
-          >
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`relative px-3.5 sm:px-4 py-2 rounded-full text-xs font-extrabold tracking-[0.16em] uppercase transition-all duration-200 cursor-pointer whitespace-nowrap group ${
-                    isActive
-                      ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
-                      : 'text-zinc-400 hover:text-zinc-100 hover:bg-white/[0.05]'
-                  }`}
-                >
-                  <span>{item.label}</span>
-
-                  {/* Active Neon Glow Underline Light */}
-                  {isActive && (
-                    <motion.span
-                      layoutId="activeNavIndicator"
-                      transition={{ type: 'spring', stiffness: 380, damping: 28 }}
-                      className="absolute -bottom-1.5 left-2.5 right-2.5 h-[2.5px] rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4]"
-                    />
-                  )}
-                </button>
-              );
-            })}
-
-            {/* Integrated Resume Button inside Capsule */}
-            <div className="h-5 w-[1px] bg-white/20 mx-1.5" />
-            <button
-              onClick={onOpenResume}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase text-zinc-200 bg-white/[0.06] hover:bg-white/[0.12] hover:text-white border border-white/15 hover:border-white/30 transition-all cursor-pointer whitespace-nowrap shadow-sm"
+          {/* Centered Navigation Pill: Smooth Hardware-Accelerated Auto-Hide/Reveal */}
+          <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-auto">
+            <motion.nav
+              onMouseLeave={() => setHoveredItem(null)}
+              animate={{
+                opacity: isNavVisible ? 1 : 0,
+                y: isNavVisible ? 0 : -90,
+              }}
+              transition={{
+                duration: 0.28,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className={`h-12 sm:h-14 flex items-center gap-1 sm:gap-1.5 px-4 lg:px-6 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu ${
+                !isNavVisible ? 'pointer-events-none' : 'pointer-events-auto'
+              }`}
             >
-              <FileText className="w-3.5 h-3.5 text-purple-400" />
-              <span>RESUME</span>
-              <span className="text-[11px] text-cyan-400 opacity-90">↗</span>
-            </button>
-          </motion.nav>
+              {navItems.map((item) => {
+                const isActive = activeSection === item.id;
+                const isHovered = hoveredItem === item.id;
+
+                return (
+                  <button
+                    key={item.id}
+                    onMouseEnter={() => setHoveredItem(item.id)}
+                    onClick={() => scrollToSection(item.id)}
+                    className={`relative px-4 py-2 rounded-full text-xs font-extrabold tracking-[0.16em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
+                      isActive
+                        ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
+                        : isHovered
+                        ? 'text-white'
+                        : 'text-zinc-400 hover:text-zinc-100'
+                    }`}
+                  >
+                    {/* Raised Glossy Beveled Hover Capsule */}
+                    {isHovered && (
+                      <motion.span
+                        layoutId="hoverNavCapsule"
+                        transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                        className="absolute inset-0 rounded-full bg-gradient-to-b from-[#2e3c5c]/90 via-[#1c263f]/95 to-[#0d1424] border border-white/[0.22] shadow-[0_6px_22px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4),0_0_16px_rgba(255,255,255,0.1)] -z-10"
+                      />
+                    )}
+
+                    <span className="relative z-10">{item.label}</span>
+
+                    {/* Active Neon Glow Underline Light */}
+                    {isActive && (
+                      <span className="absolute -bottom-1.5 left-2.5 right-2.5 h-[2.5px] rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4] transition-all duration-200" />
+                    )}
+                  </button>
+                );
+              })}
+
+              {/* Integrated Resume Button inside Capsule */}
+              <div className="h-5 w-[1px] bg-white/20 mx-1 shrink-0" />
+              <button
+                onClick={onOpenResume}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase text-zinc-200 bg-white/[0.06] hover:bg-gradient-to-b hover:from-[#2e3c5c]/90 hover:via-[#1c263f]/95 hover:to-[#0d1424] hover:text-white border border-white/15 hover:border-cyan-400/40 shadow-sm hover:shadow-[0_0_16px_rgba(6,182,212,0.35),inset_0_1px_1px_rgba(255,255,255,0.3)] transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 transform-gpu"
+              >
+                <FileText className="w-3.5 h-3.5 text-purple-400 shrink-0" />
+                <span>RESUME</span>
+                <span className="text-[11px] text-cyan-400 opacity-90 shrink-0">↗</span>
+              </button>
+            </motion.nav>
+          </div>
 
           {/* Mobile Actions: Resume Pill + Hamburger Capsule */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-2 z-10">
             <button
               onClick={onOpenResume}
-              className="h-11 flex items-center gap-1.5 px-3.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] text-xs font-extrabold tracking-wider uppercase text-zinc-200 shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] cursor-pointer"
+              className="h-11 flex items-center gap-1.5 px-3.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] text-xs font-extrabold tracking-wider uppercase text-zinc-200 shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] cursor-pointer transform-gpu"
             >
               <FileText className="w-3.5 h-3.5 text-purple-400" />
               <span>CV</span>
@@ -142,7 +194,7 @@ export default function Navbar({
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle navigation menu"
-              className="w-11 h-11 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.25)] flex items-center justify-center text-zinc-300 hover:text-white transition-all cursor-pointer transform-gpu"
             >
               {mobileMenuOpen ? <X className="w-5 h-5 text-cyan-400" /> : <Menu className="w-5 h-5 text-zinc-300" />}
             </button>

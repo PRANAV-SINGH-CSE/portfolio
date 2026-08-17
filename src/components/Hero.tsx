@@ -42,7 +42,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-[90vh] flex items-center justify-center pt-24 sm:pt-28 pb-14 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
+      className="relative min-h-[90vh] flex items-center justify-center pt-36 sm:pt-40 lg:pt-44 pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: High-Impact Positioning (7 Cols) */}
@@ -61,7 +61,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
           }}
           className="lg:col-span-7 flex flex-col items-start text-left space-y-4 sm:space-y-5 w-full"
         >
-          {/* Status Badge with Playful Spring Pop */}
+          {/* Status Badge with Pure Liquid Glass */}
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.5, y: -10 },
@@ -77,13 +77,13 @@ export default function Hero({ onOpenResume }: HeroProps) {
               },
             }}
             whileHover={{ scale: 1.04 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glow-pill text-[11px] sm:text-xs font-mono text-zinc-200 border border-white/15 shadow-sm max-w-full cursor-default"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl text-[11px] sm:text-xs font-mono text-zinc-200 max-w-full cursor-default"
           >
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-            <span className="truncate">Available for Full-Time Roles & Projects</span>
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_#34d399]" />
+            <span className="truncate font-semibold">Available for Full-Time Roles & Projects</span>
           </motion.div>
 
-          {/* Core Name & Headline with Spring Pop */}
+          {/* Core Name & Headline */}
           <div className="space-y-1.5 sm:space-y-2">
             <motion.h2
               variants={{
@@ -166,7 +166,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
             {personalInfo.detailedDescription}
           </motion.p>
 
-          {/* CTA Action Buttons with Spring Pop */}
+          {/* CTA Action Buttons in Pure Liquid Glass */}
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.8, y: 20 },
@@ -181,43 +181,43 @@ export default function Hero({ onOpenResume }: HeroProps) {
                 },
               },
             }}
-            className="flex flex-wrap items-center gap-2.5 sm:gap-3 pt-1 w-full sm:w-auto"
+            className="flex flex-wrap items-center gap-3 pt-1 w-full sm:w-auto"
           >
-            {/* Primary CTA */}
+            {/* Primary CTA: Pure Liquid Glass Pill with Beveled Depth */}
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => scrollToSection('projects')}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3 rounded-full text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-500 hover:from-indigo-600 hover:to-cyan-600 shadow-[0_0_20px_rgba(99,102,241,0.35)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] transition-all cursor-pointer whitespace-nowrap"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-gradient-to-b from-[#2e3c5e]/90 via-[#1a233b]/95 to-[#0b1020] border border-cyan-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),inset_0_1.5px_1.5px_rgba(255,255,255,0.4),0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-300 hover:shadow-[0_0_35px_rgba(6,182,212,0.6),inset_0_1.5px_1.5px_rgba(255,255,255,0.6)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap group"
             >
               <span>View Projects</span>
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-4 h-4 text-cyan-300 group-hover:translate-x-0.5 transition-transform" />
             </motion.button>
 
-            {/* Secondary CTA: Resume */}
+            {/* Secondary CTA: Resume in Pure Liquid Glass */}
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={onOpenResume}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs sm:text-sm font-semibold text-zinc-200 liquid-glow-pill hover:text-white hover:border-white/30 transition-all cursor-pointer whitespace-nowrap"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap"
             >
-              <Download className="w-3.5 h-3.5 text-cyan-400" />
+              <Download className="w-4 h-4 text-cyan-400" />
               <span>Download CV</span>
             </motion.button>
 
-            {/* Secondary CTA: Contact */}
+            {/* Secondary CTA: Contact in Pure Liquid Glass */}
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full text-xs sm:text-sm font-semibold text-zinc-300 liquid-glass-subtle hover:text-white hover:border-white/30 transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-purple-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap"
             >
-              <Mail className="w-3.5 h-3.5 text-purple-400" />
+              <Mail className="w-4 h-4 text-purple-400" />
               <span>Contact Me</span>
             </motion.button>
           </motion.div>
 
-          {/* Social Quick Links & Email Pill */}
+          {/* Social Quick Links & Email Pill in Pure Liquid Glass */}
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.9 },
@@ -231,15 +231,15 @@ export default function Hero({ onOpenResume }: HeroProps) {
                 },
               },
             }}
-            className="flex flex-wrap items-center gap-2 pt-1 w-full"
+            className="flex flex-wrap items-center gap-2.5 pt-1 w-full"
           >
             <motion.a
-              whileHover={{ scale: 1.08, y: -2 }}
+              whileHover={{ scale: 1.06, y: -2 }}
               whileTap={{ scale: 0.95 }}
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full liquid-glow-pill text-xs text-zinc-300 hover:text-white hover:border-white/30 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all"
               title="GitHub Profile"
             >
               <GitHubIcon className="w-3.5 h-3.5 text-zinc-300" />
@@ -247,24 +247,24 @@ export default function Hero({ onOpenResume }: HeroProps) {
             </motion.a>
 
             <motion.a
-              whileHover={{ scale: 1.08, y: -2 }}
+              whileHover={{ scale: 1.06, y: -2 }}
               whileTap={{ scale: 0.95 }}
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full liquid-glow-pill text-xs text-zinc-300 hover:text-white hover:border-white/30 transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-blue-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all"
               title="LinkedIn Profile"
             >
               <LinkedInIcon className="w-3.5 h-3.5 text-blue-400" />
               <span>LinkedIn</span>
             </motion.a>
 
-            {/* Copy Email Button */}
+            {/* Copy Email Button in Pure Liquid Glass */}
             <motion.button
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               onClick={copyEmail}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full liquid-glow-pill text-xs text-zinc-300 hover:text-white hover:border-cyan-400/40 transition-all cursor-pointer max-w-full truncate"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer max-w-full truncate"
               title="Click to copy email address"
             >
               {copiedEmail ? (
@@ -275,7 +275,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               ) : (
                 <>
                   <Copy className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                  <span className="font-mono text-zinc-400 truncate">{personalInfo.email}</span>
+                  <span className="font-mono text-zinc-300 truncate">{personalInfo.email}</span>
                 </>
               )}
             </motion.button>
@@ -294,7 +294,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
           }}
           className="lg:col-span-5 w-full max-w-full"
         >
-          <div className="relative rounded-3xl liquid-glass-card p-4 sm:p-6 lg:p-7 border border-white/20 shadow-2xl overflow-hidden group space-y-4 max-w-full">
+          <div className="relative rounded-3xl bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] p-4 sm:p-6 lg:p-7 border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.25)] overflow-hidden group space-y-4 max-w-full backdrop-blur-2xl">
             {/* Top specular glow effect */}
             <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-cyan-400/60 to-transparent" />
 
@@ -312,34 +312,34 @@ export default function Hero({ onOpenResume }: HeroProps) {
                 </span>
               </div>
 
-              {/* Tabs */}
-              <div className="flex items-center gap-1 bg-black/40 p-1 rounded-xl border border-white/10 shrink-0">
+              {/* Tabs in Pure Liquid Glass */}
+              <div className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-white/10 shrink-0">
                 <button
                   onClick={() => setActiveTab('architecture')}
-                  className={`px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === 'architecture'
-                      ? 'bg-white/15 text-cyan-300 font-semibold shadow-sm'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-cyan-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
                   Arch
                 </button>
                 <button
                   onClick={() => setActiveTab('stack')}
-                  className={`px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === 'stack'
-                      ? 'bg-white/15 text-purple-300 font-semibold shadow-sm'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-purple-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
                   Stack
                 </button>
                 <button
                   onClick={() => setActiveTab('terminal')}
-                  className={`px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-lg text-[11px] sm:text-xs font-mono transition-all cursor-pointer ${
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
                     activeTab === 'terminal'
-                      ? 'bg-white/15 text-emerald-300 font-semibold shadow-sm'
-                      : 'text-zinc-400 hover:text-white'
+                      ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-emerald-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
+                      : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
                   }`}
                 >
                   Live
