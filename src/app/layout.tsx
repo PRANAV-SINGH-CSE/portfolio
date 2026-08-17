@@ -61,7 +61,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} dark`} data-theme="cyan">
+    <html lang="en" className={`${inter.variable} ${outfit.variable} dark`} data-theme="violet">
       <body className="min-h-screen bg-[#030712] font-sans antialiased text-zinc-100">
         {children}
       </body>
