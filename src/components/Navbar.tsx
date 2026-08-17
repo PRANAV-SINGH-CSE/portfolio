@@ -59,11 +59,11 @@ export default function Navbar({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-3 sm:px-6 lg:px-8 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-8 lg:px-12 w-full ${
           isHidden ? 'opacity-0 -translate-y-full pointer-events-none' : 'opacity-100 translate-y-0'
         } ${isScrolled ? 'py-3' : 'py-4 sm:py-5'}`}
       >
-        <div className="max-w-6xl mx-auto flex items-center justify-between gap-3 sm:gap-4">
+        <div className="w-full flex items-center justify-between gap-3 sm:gap-4">
           {/* Left Capsule: Thicker Brand & Cyber Emblem Logo */}
           <motion.button
             initial={{ opacity: 0, x: -20 }}
