@@ -13,7 +13,7 @@ export const personalInfo = {
   positioningStatement:
     'Full Stack Developer building modern web applications and AI-powered products.',
   detailedDescription:
-    'I build high-performance web applications and real-time AI platforms using React, Next.js, Python, Flask, FastAPI, Firebase, MongoDB, and LLM APIs.',
+    'I build high-performance web applications and real-time AI platforms using React, Next.js, Node.js, Python, Flask, FastAPI, MySQL, Firebase, and LLM APIs.',
   location: 'India',
   status: '🟢 Available for full-time roles, internships & projects',
   email: 'pranasinghind@gmail.com',
@@ -38,14 +38,14 @@ export const developerStats: DeveloperStat[] = [
     icon: 'GraduationCap',
     label: 'Education',
     value: 'B.Tech — CSE',
-    detail: 'Lovely Professional University (LPU)',
+    detail: 'Lovely Professional University (LPU) • TGPA: 8.4',
     color: 'from-blue-500/20 to-cyan-500/20',
   },
   {
     icon: 'Laptop',
     label: 'Focus',
     value: 'Full Stack Development',
-    detail: 'Next.js, React, Python, Flask, FastAPI',
+    detail: 'Next.js, React, Node.js, Python, FastAPI',
     color: 'from-indigo-500/20 to-purple-500/20',
   },
   {
@@ -58,8 +58,8 @@ export const developerStats: DeveloperStat[] = [
   {
     icon: 'Wrench',
     label: 'Flagship Projects',
-    value: '4 Core Systems',
-    detail: 'Sprinto, LiveVoice AI, ZentiqAI, Review Radar',
+    value: '3 Core Platforms',
+    detail: 'Sprinto, LiveVoice AI, ZentiqAI',
     color: 'from-emerald-500/20 to-teal-500/20',
   },
   {
@@ -87,8 +87,10 @@ export const skillCategories: SkillCategory[] = [
       { name: 'JavaScript', level: 95, highlight: true },
       { name: 'TypeScript', level: 92, highlight: true },
       { name: 'Python', level: 94, highlight: true },
+      { name: 'Java', level: 86, highlight: true },
+      { name: 'C++', level: 85 },
+      { name: 'C', level: 82 },
       { name: 'SQL', level: 88, highlight: true },
-      { name: 'C++', level: 82 },
     ],
   },
   {
@@ -96,11 +98,11 @@ export const skillCategories: SkillCategory[] = [
     icon: 'Layout',
     description: 'Modern, responsive, component-driven user interfaces',
     skills: [
-      { name: 'React', level: 95, highlight: true },
+      { name: 'HTML5', level: 96, highlight: true },
+      { name: 'CSS3', level: 94, highlight: true },
+      { name: 'React.js', level: 95, highlight: true },
       { name: 'Next.js', level: 94, highlight: true },
       { name: 'Tailwind CSS', level: 95, highlight: true },
-      { name: 'HTML', level: 96 },
-      { name: 'CSS', level: 94 },
       { name: '@dnd-kit', level: 90, highlight: true, experience: 'Drag & Drop' },
       { name: 'Framer Motion', level: 88, experience: 'Spring & Transitions' },
       { name: 'IndexedDB', level: 88, experience: 'Local Cache' },
@@ -115,12 +117,11 @@ export const skillCategories: SkillCategory[] = [
       { name: 'Flask', level: 92, highlight: true },
       { name: 'FastAPI', level: 90, highlight: true },
       { name: 'REST APIs', level: 94, highlight: true },
-      { name: 'Firebase (Firestore)', level: 95, highlight: true },
+      { name: 'WebSockets', level: 90, highlight: true },
+      { name: 'MySQL', level: 86, highlight: true },
+      { name: 'Firebase', level: 95, highlight: true },
+      { name: 'Firestore', level: 95, highlight: true },
       { name: 'Realtime Database', level: 92, highlight: true },
-      { name: 'MongoDB Atlas', level: 88, highlight: true },
-      { name: 'Prisma ORM', level: 90, highlight: true },
-      { name: 'MySQL', level: 86 },
-      { name: 'WebSockets & AsyncIO', level: 90 },
     ],
   },
   {
@@ -128,15 +129,15 @@ export const skillCategories: SkillCategory[] = [
     icon: 'Sparkles',
     description: 'LLM integrations, speech models, version control, and CI/CD pipelines',
     skills: [
-      { name: 'Gemini API (2.5 Flash)', level: 94, highlight: true },
-      { name: 'Claude API', level: 90, highlight: true },
-      { name: 'OpenAI API', level: 92 },
+      { name: 'OpenAI API', level: 92, highlight: true },
+      { name: 'Anthropic API', level: 90, highlight: true },
+      { name: 'Gemini API', level: 94, highlight: true },
+      { name: 'LLM Integration', level: 94, highlight: true },
+      { name: 'Prompt Engineering', level: 92, highlight: true },
       { name: 'Faster-Whisper', level: 90, highlight: true },
-      { name: 'Prompt Engineering', level: 92 },
-      { name: 'JWT (jose) & AES-256', level: 90 },
       { name: 'Git & GitHub', level: 94, highlight: true },
-      { name: 'CI/CD (GitHub Actions)', level: 88 },
-      { name: 'PyQt5 & Win32 API', level: 85 },
+      { name: 'GitHub Actions (CI/CD)', level: 88 },
+      { name: 'Vercel', level: 92 },
     ],
   },
 ];
@@ -153,7 +154,7 @@ export const featuredProjects: Project[] = [
     tags: [
       'Next.js',
       'TypeScript',
-      'Firebase (Firestore, Auth)',
+      'Firebase',
       'Tailwind CSS',
       '@dnd-kit',
       'IndexedDB',
@@ -161,9 +162,9 @@ export const featuredProjects: Project[] = [
     liveUrl: 'https://sprinto-move.vercel.app/',
     githubUrl: 'https://github.com/PRANAV-SINGH-CSE/Sprinto',
     highlights: [
-      'Built a real-time collaborative Kanban platform that lets multiple users edit the same board simultaneously without conflicts, replacing manual refreshes with live Firestore-backed sync.',
-      'Profiled the full sync pipeline: optimistic UI updates render in under 1ms locally, while changes propagate to other clients in ~4.5ms median over Firestore\'s WebSocket channel, decoupled from the ~350ms average cloud write commit.',
-      'Cut repeat-visit board load time from ~400ms (Firestore query) to ~5ms using an IndexedDB local cache layer, keeping the board responsive even on unstable connections.',
+      'Developed a real-time collaborative Kanban platform using Next.js, TypeScript, and Firebase, enabling simultaneous multi-user board editing with live synchronization.',
+      'Optimized real-time synchronization to achieve <1ms local UI updates and ~4.5ms median cross-client propagation, decoupled from the ~350ms average cloud write commit.',
+      'Cut repeat-visit board load time from ~400ms (Firestore query) to ~5ms using an IndexedDB local cache layer.',
     ],
     stats: [
       { label: 'Local Render', value: '<1ms' },
@@ -240,20 +241,20 @@ export const featuredProjects: Project[] = [
       'AsyncIO',
       'PyQt5',
       'Win32 API',
-      'Faster-Whisper',
-      'OpenAI API',
-      'Anthropic API',
       'JavaScript (ES6+)',
       'HTML5',
       'CSS3',
+      'OpenAI API',
+      'Anthropic API',
+      'Faster-Whisper',
     ],
     liveUrl: '',
     githubUrl: '',
     highlights: [
-      'Built a real-time voice assistant that transcribes speech and streams AI responses live, achieving sub-700ms latency from end of speech to first spoken token and a sub-1-second full response loop, measured via P50/P90 profiling across the audio-to-LLM pipeline.',
+      'Engineered a real-time voice assistant that transcribes speech and streams AI responses live, achieving sub-700ms latency from end of speech to first spoken token and a sub-1-second full response loop, measured via P50/P90 profiling across the audio-to-LLM pipeline.',
       'Tuned the speech-to-text stage to run at a 0.28x real-time factor (3.5x faster than speech) with Faster-Whisper, while the LLM streamed responses at ~197 tokens/sec.',
-      'Designed a transparent, always-on-top desktop overlay controlled by global hotkeys, usable during screen shares and calls without disrupting other applications.',
-      'Built an async FastAPI backend that extracts key questions from streamed transcripts in real time, with full session history exportable to Markdown/JSON.',
+      'Designed a transparent, always-on-top desktop overlay controlled by global hotkeys for use during screen shares and calls.',
+      'Implemented an async FastAPI backend that extracts key questions from streamed transcripts in real time, with full session history exportable to Markdown/JSON.',
     ],
     stats: [
       { label: 'Latency to Token', value: '<700ms' },
@@ -318,7 +319,7 @@ export const featuredProjects: Project[] = [
   {
     id: 'zentiq-ai',
     title: 'ZentiqAI',
-    tagline: 'AI Chat Web Application with Persistent Multi-Session Concurrency',
+    tagline: 'AI Chat Web Application',
     category: 'AI & Full-Stack',
     featured: true,
     description:
@@ -326,16 +327,16 @@ export const featuredProjects: Project[] = [
     tags: [
       'Python (Flask)',
       'JavaScript',
-      'Firebase (Firestore, Realtime Database)',
+      'Firebase',
       'HTML',
       'CSS',
     ],
     liveUrl: 'https://zentiqai.vercel.app/',
     githubUrl: 'https://github.com/PRANAV-SINGH-CSE/ZentiqAI_Chat_Bot',
     highlights: [
-      'Built a full stack AI chat app with persistent, multi-session conversations and image upload, letting users pick up a conversation from any device.',
+      'Created a full stack AI chat app with persistent, multi-session conversations and image upload, letting users pick up a conversation from any device.',
       'Engineered concurrent session handling on the backend so multiple users can chat at the same time without their session data colliding.',
-      'Rebuilt the frontend into a modular, class-based JavaScript architecture, making it straightforward to add new chat features without touching unrelated code.',
+      'Restructured the frontend into a modular, class-based JavaScript architecture for easier feature extension.',
     ],
     stats: [
       { label: 'Session Handling', value: 'Zero Collision' },
@@ -352,7 +353,7 @@ export const featuredProjects: Project[] = [
           layer: 'Frontend',
           title: 'Class-Based JavaScript Architecture',
           desc: 'Modular frontend classes handling message rendering, image attachment pipelines, and event dispatchers.',
-          tech: 'JavaScript (ES6+), HTML5, CSS3 Glassmorphism',
+          tech: 'JavaScript (ES6+), HTML, CSS',
         },
         {
           layer: 'Backend API',
@@ -362,7 +363,7 @@ export const featuredProjects: Project[] = [
         },
         {
           layer: 'Data & Sync',
-          title: 'Firebase Firestore & Realtime DB',
+          title: 'Firebase (Firestore, Realtime DB)',
           desc: 'Persists user conversations and image metadata for seamless multi-device continuity.',
           tech: 'Cloud Firestore, Realtime Database',
         },
@@ -390,94 +391,6 @@ export const featuredProjects: Project[] = [
       ],
     },
   },
-  {
-    id: 'review-radar',
-    title: 'Review Radar',
-    tagline: 'AI-Powered E-Commerce Review Intelligence & Sentiment Analysis Engine',
-    category: 'Systems & APIs',
-    featured: true,
-    description:
-      'A full-stack product intelligence web application that leverages Google Gemini 2.5 Flash to transform unstructured e-commerce product reviews into structured sentiment metrics, executive summaries, and pros & cons breakdowns within an interactive multi-tenant dashboard.',
-    tags: [
-      'Next.js 16',
-      'React 19',
-      'TypeScript',
-      'Google Gemini 2.5',
-      'Prisma ORM v6',
-      'MongoDB Atlas',
-      'Tailwind CSS v4',
-      'Framer Motion',
-      'JWT (jose)',
-      'Bcrypt & AES-256',
-    ],
-    liveUrl: 'https://review-radar-virid.vercel.app/',
-    githubUrl: 'https://github.com/PRANAV-SINGH-CSE',
-    highlights: [
-      'Engineered an end-to-end sentiment intelligence tool using Next.js 16 (App Router), React 19, and TypeScript to analyze product URLs and extract customer feedback.',
-      'Integrated Google Gemini 2.5 Flash API using strict JSON schema enforcement and zero-shot prompt engineering to generate review syntheses, pros/cons breakdowns, and percentage-based sentiment distributions.',
-      'Designed normalized data models in MongoDB Atlas via Prisma ORM, ensuring user data isolation, sub-second query performance via indexed relational fields, and automated cache invalidation.',
-      'Implemented custom session auth with JWT (jose) and Bcrypt.js, augmented with an AES-256-CBC reversible encryption engine and edge-based Next.js Middleware for route protection.',
-      'Built a dynamic glassmorphic interface with Tailwind CSS v4 and Framer Motion, featuring multi-step loading indicators, paginated card grids, category filtering, search, and responsive inspector modals.',
-    ],
-    stats: [
-      { label: 'AI Output Mode', value: 'Strict JSON' },
-      { label: 'Database ORM', value: 'Prisma v6' },
-      { label: 'Auth Runtime', value: 'Edge (jose)' },
-    ],
-    caseStudy: {
-      problem:
-        'Online shoppers and product managers waste hours reading through hundreds of mixed, unstructured product reviews across e-commerce platforms, suffering from review fatigue and biased opinions.',
-      solution:
-        'Engineered Review Radar: an automated sentiment synthesis platform. The user inputs any product URL, Next.js server route handlers invoke Google Gemini 2.5 Flash in structured JSON mode, and normalized summaries, pros/cons, and sentiment percentages are persisted in MongoDB Atlas via Prisma ORM for instant interactive inspection.',
-      architectureSteps: [
-        {
-          layer: 'Client Portal',
-          title: 'Next.js 16 & Framer Motion Dashboard',
-          desc: 'Interactive liquid glass dashboard featuring paginated grid views, category filters, and multi-step animated loading states.',
-          tech: 'Next.js 16, React 19, Framer Motion v12',
-        },
-        {
-          layer: 'Route Handler & Auth',
-          title: 'Edge Middleware & JWT Verification',
-          desc: 'Edge-compatible route guards verifying signed tokens with jose, passing sanitized requests to backend handlers.',
-          tech: 'Next.js Edge Middleware, jose, AES-256',
-        },
-        {
-          layer: 'AI Sentiment Engine',
-          title: 'Google Gemini 2.5 Flash Pipeline',
-          desc: 'Executes structured prompt engineering with responseMimeType: "application/json" to synthesize pros, cons, and sentiment ratios.',
-          tech: 'Google Gemini 2.5 Flash, JSON Schema',
-        },
-        {
-          layer: 'Database Layer',
-          title: 'MongoDB Atlas & Prisma ORM',
-          desc: 'ACID transactions persisting User, Product, Review, and Analysis documents with indexed foreign keys.',
-          tech: 'MongoDB Atlas, Prisma ORM v6',
-        },
-      ],
-      challenges: [
-        {
-          title: 'LLM Output Determinism & Markdown Artifacts',
-          solution:
-            'Configured Gemini API with strict responseMimeType: "application/json" and created a pre-parse sanitization pipeline that strips rogue markdown backticks before runtime evaluation.',
-        },
-        {
-          title: 'Edge-Compatible JWT Verification in Next.js Middleware',
-          solution:
-            'Replaced standard Node.js jsonwebtoken with jose, leveraging native Web Crypto APIs for signature validation across both Edge and Node runtimes.',
-        },
-      ],
-      results: [
-        'Transformed thousands of messy review paragraphs into instant executive verdicts with 100% structured reliability.',
-        'Sub-second query performance across indexed MongoDB collections.',
-      ],
-      metrics: [
-        { label: 'Parse Accuracy', value: '100%', trend: 'Structured JSON' },
-        { label: 'Query Execution', value: '<20ms', trend: 'Prisma indexes' },
-        { label: 'Auth Verification', value: '<5ms', trend: 'Edge runtime' },
-      ],
-    },
-  },
 ];
 
 export const experienceItems: ExperienceItem[] = [
@@ -493,9 +406,8 @@ export const experienceItems: ExperienceItem[] = [
       'Engineered Sprinto, a real-time collaborative Kanban platform with sub-1ms optimistic UI updates, ~4.5ms WebSocket sync propagation, and ~5ms IndexedDB local cache load times.',
       'Developed LiveVoice AI, achieving sub-700ms voice-to-token response loops with Faster-Whisper running at 0.28x real-time factor and a transparent PyQt5 desktop HUD overlay.',
       'Architected ZentiqAI with Flask backend concurrency, multi-device Firebase persistence, image uploads, and modular class-based frontend architecture.',
-      'Built Review Radar, an AI sentiment intelligence platform using Next.js 16 App Router, Gemini 2.5 Flash in structured JSON mode, Prisma ORM, MongoDB Atlas, and JWT edge auth.',
     ],
-    skills: ['Next.js', 'React', 'Python', 'Flask', 'FastAPI', 'Firebase', 'MongoDB', 'Prisma', 'TypeScript', 'Tailwind CSS'],
+    skills: ['Next.js', 'React', 'Node.js', 'Python', 'Flask', 'FastAPI', 'Firebase', 'TypeScript', 'Tailwind CSS', 'Java', 'C++'],
   },
   {
     id: 'academic-eng',
@@ -506,10 +418,10 @@ export const experienceItems: ExperienceItem[] = [
     type: 'Community',
     badge: 'Academic',
     description: [
-      'Pursuing B.Tech in Computer Science and Engineering with core focus on Data Structures, Algorithms, Software Engineering, and Real-Time Systems.',
+      'Pursuing B.Tech in Computer Science and Engineering at Lovely Professional University (LPU) (TGPA: 8.4).',
       'Active developer on GitHub (github.com/PRANAV-SINGH-CSE) publishing open-source projects and developer tools.',
     ],
-    skills: ['JavaScript', 'TypeScript', 'Python', 'SQL', 'C++', 'Git/GitHub', 'CI/CD'],
+    skills: ['Java', 'C', 'C++', 'JavaScript', 'TypeScript', 'Python', 'SQL', 'Git/GitHub', 'CI/CD'],
   },
 ];
 
@@ -519,17 +431,18 @@ export const educationData: EducationItem = {
   institution: 'Lovely Professional University (LPU)',
   period: '2024 – 2028',
   location: 'India',
+  grade: 'TGPA: 8.4',
   highlights: [
-    'B.Tech in Computer Science and Engineering at Lovely Professional University (LPU)',
+    'B.Tech in Computer Science and Engineering at Lovely Professional University (LPU) • TGPA: 8.4',
     'Core focus on Full Stack Development, Real-Time Distributed Systems, and AI & Speech Engines',
     'Active Open-Source Builder on GitHub: github.com/PRANAV-SINGH-CSE',
   ],
   coursework: [
     'Data Structures & Algorithms',
-    'Object-Oriented Programming (C++ / Python)',
-    'Database Management Systems (SQL, MongoDB & Firebase)',
+    'Object-Oriented Programming (Java / C++ / Python)',
+    'Database Management Systems (SQL, MySQL & Firebase)',
     'Web Development (React, Next.js, Flask, Node.js)',
-    'AI & Speech Recognition (LLMs, Whisper, Gemini APIs)',
+    'AI & Speech Recognition (LLMs, Faster-Whisper, Gemini APIs)',
     'Software Engineering & CI/CD (GitHub Actions)',
   ],
 };
@@ -591,7 +504,7 @@ export const githubActivityData = {
 
 export const resumeData = {
   name: 'PRANAV SINGH',
-  title: 'Full Stack Developer',
+  title: 'Full Stack Developer | React.js | Next.js | Node.js | TypeScript',
   contact: {
     email: 'pranasinghind@gmail.com',
     phone: '8077004381',
@@ -599,63 +512,54 @@ export const resumeData = {
     github: 'github.com/PRANAV-SINGH-CSE',
   },
   summary:
-    'Full Stack Developer building real-time collaborative systems, low-latency speech AI engines, and full-stack web applications with Next.js, React, Python, Flask, FastAPI, Firebase, and MongoDB.',
+    'Full Stack Developer building real-time collaborative systems, low-latency speech AI engines, and full-stack web applications with Next.js, React, Node.js, Python, Flask, FastAPI, MySQL, and Firebase.',
   technicalSkills: {
-    languages: 'JavaScript, TypeScript, Python, SQL, C++',
-    frontend: 'HTML, CSS, React, Next.js, Tailwind CSS, @dnd-kit, Framer Motion, IndexedDB',
-    backendDatabases: 'Node.js, Flask, FastAPI, REST APIs, MySQL, Firebase (Firestore, Realtime Database, Auth), MongoDB Atlas, Prisma ORM',
-    aiTooling: 'LLM/AI API integration (Gemini, Claude, OpenAI), prompt engineering, Faster-Whisper, JWT (jose), AES-256, Git/GitHub, CI/CD (GitHub Actions)',
+    languages: 'Java, C, C++, JavaScript, TypeScript, Python, SQL',
+    frontend: 'HTML5, CSS3, React.js, Next.js, Tailwind CSS',
+    backendDatabases: 'Node.js, Flask, FastAPI, REST APIs, WebSockets, MySQL, Firebase, Firestore, Realtime Database',
+    aiTooling: 'OpenAI API, Anthropic API, Gemini API, LLM Integration, Prompt Engineering, Git, GitHub, GitHub Actions, CI/CD, Vercel',
   },
   projects: [
     {
       name: 'Sprinto — Real-Time Collaborative Workspace & Kanban Platform',
-      tech: 'Next.js, TypeScript, Firebase (Firestore, Auth), Tailwind CSS, @dnd-kit, IndexedDB',
+      period: 'Jul 2026 – Aug 2026',
+      tech: 'Next.js, TypeScript, Firebase, Tailwind CSS, @dnd-kit, IndexedDB',
       liveDemo: 'https://sprinto-move.vercel.app/',
       github: 'https://github.com/PRANAV-SINGH-CSE/Sprinto',
       bullets: [
-        'Built a real-time collaborative Kanban platform that lets multiple users edit the same board simultaneously without conflicts, replacing manual refreshes with live Firestore-backed sync.',
-        'Profiled the full sync pipeline: optimistic UI updates render in under 1ms locally, while changes propagate to other clients in ~4.5ms median over Firestore\'s WebSocket channel, decoupled from the ~350ms average cloud write commit.',
-        'Cut repeat-visit board load time from ~400ms (Firestore query) to ~5ms using an IndexedDB local cache layer, keeping the board responsive even on unstable connections.',
+        'Developed a real-time collaborative Kanban platform using Next.js, TypeScript, and Firebase, enabling simultaneous multi-user board editing with live synchronization.',
+        'Optimized real-time synchronization to achieve <1ms local UI updates and ~4.5ms median cross-client propagation, decoupled from the ~350ms average cloud write commit.',
+        'Cut repeat-visit board load time from ~400ms (Firestore query) to ~5ms using an IndexedDB local cache layer.',
       ],
     },
     {
       name: 'LiveVoice AI — Real-Time Speech Intelligence & Desktop HUD Platform',
+      period: 'Jun 2026 – Jul 2026',
       tech: 'Python, FastAPI, WebSockets, AsyncIO, PyQt5, Win32 API, JavaScript (ES6+), HTML5, CSS3, OpenAI API, Anthropic API, Faster-Whisper',
       liveDemo: '',
       github: '',
       bullets: [
-        'Built a real-time voice assistant that transcribes speech and streams AI responses live, achieving sub-700ms latency from end of speech to first spoken token and a sub-1-second full response loop, measured via P50/P90 profiling across the audio-to-LLM pipeline.',
+        'Engineered a real-time voice assistant that transcribes speech and streams AI responses live, achieving sub-700ms latency from end of speech to first spoken token and a sub-1-second full response loop, measured via P50/P90 profiling across the audio-to-LLM pipeline.',
         'Tuned the speech-to-text stage to run at a 0.28x real-time factor (3.5x faster than speech) with Faster-Whisper, while the LLM streamed responses at ~197 tokens/sec.',
-        'Designed a transparent, always-on-top desktop overlay controlled by global hotkeys, usable during screen shares and calls without disrupting other applications.',
-        'Built an async FastAPI backend that extracts key questions from streamed transcripts in real time, with full session history exportable to Markdown/JSON.',
+        'Designed a transparent, always-on-top desktop overlay controlled by global hotkeys for use during screen shares and calls.',
+        'Implemented an async FastAPI backend that extracts key questions from streamed transcripts in real time, with full session history exportable to Markdown/JSON.',
       ],
     },
     {
       name: 'ZentiqAI — AI Chat Web Application',
-      tech: 'Python (Flask), JavaScript, Firebase (Firestore, Realtime Database), HTML, CSS',
+      period: 'Feb 2026 – Apr 2026',
+      tech: 'Python (Flask), JavaScript, Firebase, HTML, CSS',
       liveDemo: 'https://zentiqai.vercel.app/',
       github: 'https://github.com/PRANAV-SINGH-CSE/ZentiqAI_Chat_Bot',
       bullets: [
-        'Built a full stack AI chat app with persistent, multi-session conversations and image upload, letting users pick up a conversation from any device.',
+        'Created a full stack AI chat app with persistent, multi-session conversations and image upload, letting users pick up a conversation from any device.',
         'Engineered concurrent session handling on the backend so multiple users can chat at the same time without their session data colliding.',
-        'Rebuilt the frontend into a modular, class-based JavaScript architecture, making it straightforward to add new chat features without touching unrelated code.',
-      ],
-    },
-    {
-      name: 'Review Radar — AI-Powered Review Intelligence & Sentiment Analysis Engine',
-      tech: 'Next.js 16, React 19, TypeScript, Google Gemini 2.5 Flash, Prisma ORM v6, MongoDB Atlas, Tailwind CSS v4, Framer Motion, JWT (jose), Bcrypt, AES-256',
-      liveDemo: 'https://review-radar-virid.vercel.app/',
-      github: 'https://github.com/PRANAV-SINGH-CSE',
-      bullets: [
-        'Engineered an end-to-end sentiment intelligence tool using Next.js 16 (App Router), React 19, and TypeScript to analyze product URLs and extract customer feedback.',
-        'Integrated Google Gemini 2.5 Flash API using strict JSON schema enforcement and zero-shot prompt engineering to generate review syntheses, pros/cons breakdowns, and percentage-based sentiment distributions.',
-        'Designed normalized data models in MongoDB Atlas via Prisma ORM, ensuring user data isolation, sub-second query performance via indexed relational fields, and automated cache invalidation.',
-        'Implemented custom session auth with JWT (jose) and Bcrypt.js, augmented with an AES-256-CBC reversible encryption engine and edge-based Next.js Middleware for route protection.',
+        'Restructured the frontend into a modular, class-based JavaScript architecture for easier feature extension.',
       ],
     },
   ],
   education: {
     institution: 'Lovely Professional University (LPU)',
-    degree: 'B.Tech, Computer Science and Engineering',
+    degree: 'B.Tech, Computer Science and Engineering; TGPA:8.4',
   },
 };

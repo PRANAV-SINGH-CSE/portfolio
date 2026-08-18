@@ -236,6 +236,11 @@ ${resumeData.education.degree}
                         <h3 className="text-xs sm:text-sm font-bold text-white print:text-black">
                           {p.name}
                         </h3>
+                        {p.period && (
+                          <span className="text-[11px] font-mono text-zinc-400 print:text-zinc-600 font-medium">
+                            {p.period}
+                          </span>
+                        )}
                       </div>
                       <p className="text-[11px] font-mono text-purple-300 print:text-zinc-600 italic">
                         {p.tech}
