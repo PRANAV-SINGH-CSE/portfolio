@@ -118,11 +118,11 @@ export default function Hero({ onOpenResume }: HeroProps) {
                   },
                 },
               }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-[1.15]"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] space-y-1"
             >
-              Full-Stack <br />
-              <span className="text-gradient-cyan">Developer</span> & <br />
-              <span className="text-gradient-purple">AI Systems Builder</span>
+              <span className="liquid-glass-text block">Full-Stack</span>
+              <span className="liquid-glass-text-cyan block">Developer &</span>
+              <span className="liquid-glass-text-purple block">AI Systems Builder</span>
             </motion.h1>
           </div>
 

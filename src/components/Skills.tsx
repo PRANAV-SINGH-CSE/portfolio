@@ -45,8 +45,9 @@ export default function Skills() {
           <Layers className="w-3.5 h-3.5" />
           <span>Technical Proficiency</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-          Curated <span className="text-gradient-neon">Skills & Tech Stack</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Curated</span>{' '}
+          <span className="liquid-glass-text-purple">Skills & Tech Stack</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-xl">
           Grouped by discipline to highlight production capability across modern web architectures and AI systems.

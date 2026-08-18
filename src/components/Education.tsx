@@ -27,8 +27,9 @@ export default function Education() {
           <GraduationCap className="w-3.5 h-3.5" />
           <span>Academic Foundation</span>
         </div>
-        <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white">
-          Formal <span className="text-gradient-neon">Education</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Formal</span>{' '}
+          <span className="liquid-glass-text-purple">Education</span>
         </h2>
       </motion.div>
 

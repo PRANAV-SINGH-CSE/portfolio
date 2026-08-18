@@ -14,6 +14,7 @@ import {
   Building2,
   CheckCircle2,
   GraduationCap,
+  ChevronDown,
 } from 'lucide-react';
 import { certificatesData } from '@/data/portfolioData';
 import { CertificateItem } from '@/types';
@@ -24,9 +25,11 @@ interface CertificatesProps {
 
 export default function Certificates({ onSelectCertificate }: CertificatesProps) {
   const [activeCategory, setActiveCategory] = useState<string>('all');
+  const [showAll, setShowAll] = useState<boolean>(false);
 
   const categories = [
     'all',
+    'Full-Stack & Web',
     'Languages & OOP',
     'Data Structures & Algorithms',
     'Databases & Systems',
@@ -38,6 +41,12 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
       : certificatesData.filter(
           (c) => c.category.toLowerCase() === activeCategory.toLowerCase()
         );
+
+  // Show only 3 certificates normally by default unless expanded
+  const displayedCertificates =
+    activeCategory === 'all' && !showAll
+      ? filteredCertificates.slice(0, 3)
+      : filteredCertificates;
 
   return (
     <section
@@ -56,11 +65,12 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           <Award className="w-3.5 h-3.5 text-amber-400" />
           <span>Accredited Expertise</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-          Verified <span className="text-gradient-cyan">Certifications & Credentials</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Verified</span>{' '}
+          <span className="liquid-glass-text-cyan">Certifications & Credentials</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-2xl">
-          Officially verified industry & academic accreditations across Data Structures, Algorithms, Database Management, and Systems Engineering.
+          Officially verified industry & academic accreditations across Next.js Full Stack, Data Structures, Algorithms, Database Management, and Systems Engineering.
         </p>
       </motion.div>
 
@@ -73,7 +83,7 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
         className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10"
       >
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-gradient-cyan">5</span>
+          <span className="text-2xl sm:text-3xl font-extrabold text-gradient-cyan">6</span>
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Certifications</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
@@ -81,11 +91,11 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">ID & QR Verified</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-purple-400">2</span>
+          <span className="text-2xl sm:text-3xl font-extrabold text-purple-400">3</span>
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Industry Bodies</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-amber-400">3</span>
+          <span className="text-2xl sm:text-3xl font-extrabold text-amber-400">4</span>
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Core Disciplines</p>
         </div>
       </motion.div>
@@ -110,7 +120,10 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           return (
             <button
               key={cat}
-              onClick={() => setActiveCategory(cat)}
+              onClick={() => {
+                setActiveCategory(cat);
+                if (cat !== 'all') setShowAll(true);
+              }}
               className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
                 isActive
                   ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.35)]'
@@ -133,7 +146,7 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
       {/* Certificates Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
         <AnimatePresence mode="popLayout">
-          {filteredCertificates.map((cert, idx) => (
+          {displayedCertificates.map((cert, idx) => (
             <motion.div
               key={cert.id}
               layout
@@ -163,8 +176,10 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
                   <span
                     className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold backdrop-blur-md border shadow-md ${
                       cert.issuerCategory === 'Infosys'
-                        ? 'bg-[#007cc3]/80 text-white border-cyan-400/40'
-                        : 'bg-[#ff4e00]/80 text-white border-orange-300/40'
+                        ? 'bg-[#007cc3]/80 text-white border-cyan-400/40 shadow-cyan-500/20'
+                        : cert.issuerCategory === 'CipherSchools'
+                        ? 'bg-[#6366f1]/85 text-white border-indigo-300/40 shadow-indigo-500/20'
+                        : 'bg-[#ff4e00]/80 text-white border-orange-300/40 shadow-orange-500/20'
                     }`}
                   >
                     <Building2 className="w-3 h-3" />
@@ -275,6 +290,33 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Show More / Hide (Show Less) Toggle Button */}
+      {activeCategory === 'all' && filteredCertificates.length > 3 && (
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4 }}
+          className="flex justify-center pt-10"
+        >
+          <button
+            onClick={() => setShowAll(!showAll)}
+            className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold text-zinc-100 liquid-glow-pill hover:text-white hover:border-cyan-400/50 hover:scale-[1.02] shadow-[0_0_25px_rgba(99,102,241,0.25)] transition-all cursor-pointer group"
+          >
+            <span>
+              {showAll
+                ? 'Hide Certificates (Show Less)'
+                : `Show More Certificates (+${filteredCertificates.length - 3} More)`}
+            </span>
+            <ChevronDown
+              className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${
+                showAll ? 'rotate-180 -translate-y-0.5' : ''
+              }`}
+            />
+          </button>
+        </motion.div>
+      )}
 
       {/* Academic Endorsement Banner */}
       <motion.div

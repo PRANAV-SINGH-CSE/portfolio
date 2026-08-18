@@ -18,6 +18,7 @@ import CaseStudyModal from '@/components/CaseStudyModal';
 import CertificateModal from '@/components/CertificateModal';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import ScrollToTop from '@/components/ScrollToTop';
+import GamingCursor from '@/components/GamingCursor';
 import { Project, CertificateItem } from '@/types';
 import { certificatesData } from '@/data/portfolioData';
 
@@ -56,6 +57,9 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#030712] text-zinc-100 selection:bg-purple-500/30 selection:text-white font-sans antialiased overflow-x-hidden">
+      {/* Precision Gaming Cyber Reticle Cursor */}
+      <GamingCursor />
+
       {/* Framer Motion Ultra-Smooth Spring Scroll Progress Indicator */}
       <ScrollProgressBar />
 

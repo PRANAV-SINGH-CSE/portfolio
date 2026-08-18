@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap');
 @import "tailwindcss";
 
 :root {
@@ -138,6 +139,72 @@ body.modal-open header {
   -webkit-text-fill-color: transparent;
 }
 
+/* ========================================================================= */
+/* LIQUID GLASS CHROME TEXT STYLES                                           */
+/* ========================================================================= */
+.liquid-glass-text {
+  font-family: var(--font-outfit), 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  /* Glass / Chrome Gradient Fill */
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.65) 30%,
+    rgba(255, 255, 255, 0.2) 65%,
+    rgba(255, 255, 255, 0.6) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  /* Crisp Semi-Transparent Outline */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.45);
+  /* Outer Glow & Shadow */
+  filter: drop-shadow(0 0 24px rgba(255, 255, 255, 0.35)) 
+          drop-shadow(0 4px 16px rgba(0, 0, 0, 0.7));
+}
+
+.liquid-glass-text-cyan {
+  font-family: var(--font-outfit), 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(165, 243, 252, 0.85) 30%,
+    rgba(6, 182, 212, 0.4) 65%,
+    rgba(34, 211, 238, 0.85) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(6, 182, 212, 0.45);
+  filter: drop-shadow(0 0 24px rgba(6, 182, 212, 0.45)) 
+          drop-shadow(0 4px 16px rgba(0, 0, 0, 0.7));
+}
+
+.liquid-glass-text-purple {
+  font-family: var(--font-outfit), 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  display: inline-block;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(233, 213, 255, 0.85) 30%,
+    rgba(168, 85, 247, 0.4) 65%,
+    rgba(192, 132, 252, 0.85) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(168, 85, 247, 0.45);
+  filter: drop-shadow(0 0 24px rgba(168, 85, 247, 0.45)) 
+          drop-shadow(0 4px 16px rgba(0, 0, 0, 0.7));
+}
+
 /* Background Grid Pattern */
 .bg-grid-pattern {
   background-size: 40px 40px;
@@ -228,4 +295,42 @@ body.modal-open header {
   animation: shimmer 4s infinite linear;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* ========================================================================= */
+/* GAMING CYBER CURSOR STYLES                                               */
+/* ========================================================================= */
+@media (pointer: fine) {
+  html.gaming-cursor-active,
+  html.gaming-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+[data-target-locked="true"] > div {
+  border-color: rgba(34, 211, 238, 0.9) !important;
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.75), inset 0 0 10px rgba(34, 211, 238, 0.3) !important;
+}
+
+[data-target-locked="true"] .ring-brackets {
+  border-color: rgba(34, 211, 238, 0.8) !important;
+  transform: scale(1.18);
+  box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+}
+
+@keyframes cursor-ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0.9;
+    border-width: 2px;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2.6);
+    opacity: 0;
+    border-width: 1px;
+  }
+}
+
+.ripple-animate {
+  animation: cursor-ripple 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

@@ -29,8 +29,9 @@ export default function Experience() {
           <Briefcase className="w-3.5 h-3.5" />
           <span>Track Record</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-          Experience & <span className="text-gradient-cyan">Engineering Journey</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Experience &</span>{' '}
+          <span className="liquid-glass-text-cyan">Engineering Journey</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-xl">
           Core development roles, production deployments, startup internships, and academic accomplishments.

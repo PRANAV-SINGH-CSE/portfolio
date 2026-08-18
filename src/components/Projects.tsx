@@ -25,14 +25,14 @@ export default function Projects({
   const [activeFilter, setActiveFilter] = useState<string>('all');
   const [showAll, setShowAll] = useState<boolean>(false);
 
-  const categories = ['all', 'Web Apps & UI', 'AI & Full-Stack', 'Systems & APIs'];
+  const categories = ['all', 'Web Apps & UI', 'AI & Full-Stack'];
 
   const filteredProjects =
     activeFilter === 'all'
       ? featuredProjects
       : featuredProjects.filter((p) => p.category.toLowerCase() === activeFilter.toLowerCase());
 
-  // Show top 2 projects by default if in 'all' view and showAll is false
+  // Show top 2 by default in 'all' view until user clicks Show More
   const displayedProjects =
     activeFilter === 'all' && !showAll
       ? filteredProjects.slice(0, 2)
@@ -52,8 +52,9 @@ export default function Projects({
           <Sparkles className="w-3.5 h-3.5" />
           <span>Flagship Engineering Showcase</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-          Featured <span className="text-gradient-cyan">Projects & Case Studies</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Featured</span>{' '}
+          <span className="liquid-glass-text-cyan">Projects & Case Studies</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-2xl">
           Real-time collaborative workspaces, low-latency speech pipelines, and full-stack AI architectures.
@@ -71,10 +72,7 @@ export default function Projects({
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => {
-              setActiveFilter(cat);
-              if (cat !== 'all') setShowAll(true);
-            }}
+            onClick={() => setActiveFilter(cat)}
             className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
               activeFilter.toLowerCase() === cat.toLowerCase()
                 ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.35)]'
@@ -226,7 +224,7 @@ export default function Projects({
         </AnimatePresence>
       </div>
 
-      {/* Show More / Show Less Toggle Button */}
+      {/* Show More / Hide (Show Less) Toggle Button */}
       {activeFilter === 'all' && filteredProjects.length > 2 && (
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -239,7 +237,7 @@ export default function Projects({
             onClick={() => setShowAll(!showAll)}
             className="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full text-xs sm:text-sm font-bold text-zinc-100 liquid-glow-pill hover:text-white hover:border-cyan-400/50 hover:scale-[1.02] shadow-[0_0_25px_rgba(99,102,241,0.25)] transition-all cursor-pointer group"
           >
-            <span>{showAll ? 'Show Less Projects' : `Show More Projects (${filteredProjects.length - 2} More)`}</span>
+            <span>{showAll ? 'Hide Projects (Show Less)' : `Show More Projects (+${filteredProjects.length - 2} More)`}</span>
             <ChevronDown
               className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${
                 showAll ? 'rotate-180 -translate-y-0.5' : ''

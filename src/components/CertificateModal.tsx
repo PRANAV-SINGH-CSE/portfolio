@@ -264,6 +264,8 @@ export default function CertificateModal({
                       className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-bold border ${
                         certificate.issuerCategory === 'Infosys'
                           ? 'bg-blue-500/15 text-blue-300 border-blue-400/30'
+                          : certificate.issuerCategory === 'CipherSchools'
+                          ? 'bg-indigo-500/15 text-indigo-300 border-indigo-400/30'
                           : 'bg-orange-500/15 text-orange-300 border-orange-400/30'
                       }`}
                     >

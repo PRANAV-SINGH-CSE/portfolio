@@ -59,8 +59,8 @@ export const developerStats: DeveloperStat[] = [
   {
     icon: 'Wrench',
     label: 'Flagship Projects',
-    value: '3 Core Platforms',
-    detail: 'Sprinto, LiveVoice AI, ZentiqAI',
+    value: '4 Core Platforms',
+    detail: 'Sprinto, Review Radar, LiveVoice AI, ZentiqAI',
     color: 'from-emerald-500/20 to-teal-500/20',
   },
   {
@@ -392,6 +392,92 @@ export const featuredProjects: Project[] = [
       ],
     },
   },
+  {
+    id: 'review-radar',
+    title: 'Review Radar',
+    tagline: 'AI-Powered Review Intelligence & Sentiment Analysis Engine',
+    category: 'AI & Full-Stack',
+    featured: true,
+    description:
+      'An end-to-end sentiment intelligence platform that analyzes product URLs, extracts customer sentiment via Google Gemini 2.5 Flash, and generates structured pros/cons breakdowns.',
+    tags: [
+      'Next.js 16',
+      'React 19',
+      'TypeScript',
+      'Gemini 2.5 Flash',
+      'Prisma ORM',
+      'MongoDB Atlas',
+      'Tailwind CSS',
+      'JWT (jose)',
+    ],
+    liveUrl: 'https://review-radar-virid.vercel.app/',
+    githubUrl: 'https://github.com/PRANAV-SINGH-CSE/Review-Radar',
+    highlights: [
+      'Engineered an end-to-end sentiment intelligence tool using Next.js 16 (App Router), React 19, and TypeScript to analyze product URLs and extract customer feedback.',
+      'Integrated Google Gemini 2.5 Flash API using strict JSON schema enforcement and zero-shot prompt engineering to generate review syntheses, pros/cons breakdowns, and percentage-based sentiment distributions.',
+      'Designed normalized data models in MongoDB Atlas via Prisma ORM, ensuring user data isolation, sub-second query performance via indexed relational fields, and automated cache invalidation.',
+      'Implemented custom session auth with JWT (jose) and Bcrypt.js, augmented with an AES-256-CBC reversible encryption engine and edge-based Next.js Middleware for route protection.',
+    ],
+    stats: [
+      { label: 'Schema Precision', value: '100% JSON' },
+      { label: 'Latency', value: 'Sub-second' },
+      { label: 'Auth & Security', value: 'AES-256' },
+    ],
+    caseStudy: {
+      problem:
+        'Consumers and sellers spend hours reading hundreds of scattered e-commerce reviews with no unified breakdown of recurring product defects, feature highlights, or authentic sentiment percentages.',
+      solution:
+        'Built an AI pipeline with Next.js 16 and Google Gemini 2.5 Flash that processes product URLs, extracts unstructured customer sentiment into structured JSON schemas, and stores indexed analytics in MongoDB Atlas via Prisma ORM with AES-256 session security.',
+      architectureSteps: [
+        {
+          layer: 'Frontend & UI',
+          title: 'Next.js 16 App Router & React 19',
+          desc: 'High-speed sentiment visualization dashboards with reactive metric gauges and breakdown filters.',
+          tech: 'Next.js 16, React 19, Tailwind CSS, TypeScript',
+        },
+        {
+          layer: 'AI Intelligence',
+          title: 'Gemini 2.5 Flash Structured JSON',
+          desc: 'Zero-shot prompt pipelines enforcing strict JSON schemas to output pros/cons distributions and sentiment breakdown.',
+          tech: 'Google Gemini 2.5 Flash API, JSON Schema',
+        },
+        {
+          layer: 'Database & ORM',
+          title: 'Prisma ORM & MongoDB Atlas',
+          desc: 'Indexed query performance, automated cache invalidation, and secure user data isolation.',
+          tech: 'Prisma ORM v6, MongoDB Atlas',
+        },
+        {
+          layer: 'Auth & Security',
+          title: 'JWT (jose) & AES-256-CBC Encryption',
+          desc: 'Reversible encryption engine paired with edge-based Next.js Middleware for secure route authorization.',
+          tech: 'JWT (jose), Bcrypt.js, AES-256-CBC, Next.js Middleware',
+        },
+      ],
+      challenges: [
+        {
+          title: 'Enforcing Deterministic JSON Outputs from LLMs',
+          solution:
+            'Implemented Gemini structured outputs with strict schema definitions, ensuring 100% parseable JSON without hallucinated response structures.',
+        },
+        {
+          title: 'Sub-Second Sentiment Queries Under Load',
+          solution:
+            'Structured relational indices in MongoDB via Prisma ORM, enabling sub-second lookup of previously analyzed product summaries.',
+        },
+      ],
+      results: [
+        'Instant synthesis of hundreds of product reviews into clear pros/cons.',
+        '100% reliable structured JSON schema extraction with Gemini 2.5 Flash.',
+        'Enterprise-grade security with AES-256 encryption and JWT session middleware.',
+      ],
+      metrics: [
+        { label: 'JSON Reliability', value: '100%', trend: 'Zero-shot' },
+        { label: 'Query Speed', value: '<500ms', trend: 'Indexed' },
+        { label: 'Security', value: 'AES-256', trend: 'Encrypted' },
+      ],
+    },
+  },
 ];
 
 export const experienceItems: ExperienceItem[] = [
@@ -598,6 +684,19 @@ export const resumeData = {
       ],
     },
     {
+      name: 'Review Radar — AI-Powered Review Intelligence & Sentiment Analysis Engine',
+      period: 'Feb 2026 – Mar 2026',
+      tech: 'Next.js 16, React 19, TypeScript, Google Gemini 2.5 Flash, Prisma ORM, MongoDB Atlas, Tailwind CSS, JWT',
+      liveDemo: 'https://review-radar-virid.vercel.app/',
+      github: 'https://github.com/PRANAV-SINGH-CSE/Review-Radar',
+      bullets: [
+        'Engineered an end-to-end sentiment intelligence tool using Next.js 16 (App Router), React 19, and TypeScript to analyze product URLs and extract customer feedback.',
+        'Integrated Google Gemini 2.5 Flash API using strict JSON schema enforcement and zero-shot prompt engineering to generate review syntheses, pros/cons breakdowns, and percentage-based sentiment distributions.',
+        'Designed normalized data models in MongoDB Atlas via Prisma ORM, ensuring user data isolation, sub-second query performance via indexed relational fields, and automated cache invalidation.',
+        'Implemented custom session auth with JWT (jose) and Bcrypt.js, augmented with an AES-256-CBC reversible encryption engine and edge-based Next.js Middleware for route protection.',
+      ],
+    },
+    {
       name: 'ZentiqAI — AI Chat Web Application',
       period: 'Feb 2026 – Apr 2026',
       tech: 'Python (Flask), JavaScript, Firebase, HTML, CSS',
@@ -617,6 +716,29 @@ export const resumeData = {
 };
 
 export const certificatesData: CertificateItem[] = [
+  {
+    id: 'nextjs-cipherschools',
+    title: 'Full Stack Development Using Nextjs',
+    issuer: 'CipherSchools',
+    collaborator: 'Lovely Professional University',
+    issuerCategory: 'CipherSchools',
+    issueDate: 'August 2026',
+    credentialId: 'CSW2026-18294',
+    pdfUrl: '/certificates/Next.js certification.pdf',
+    previewImage: '/certificates/previews/nextjs.png',
+    category: 'Full-Stack & Web',
+    skills: [
+      'Next.js',
+      'React.js',
+      'Full Stack Web Development',
+      'Server-Side Rendering (SSR)',
+      'API Routes & App Router',
+      'TypeScript',
+    ],
+    description:
+      'Comprehensive certification in enterprise Next.js full stack engineering covering React Server Components, hybrid SSR/SSG rendering pipelines, dynamic routing, full-stack API architectures, and scalable web deployments.',
+    signatory: 'CipherSchools Technical Directorate',
+  },
   {
     id: 'dsa-iamneo',
     title: 'Data Structure and Algorithm',

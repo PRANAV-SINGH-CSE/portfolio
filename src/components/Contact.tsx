@@ -81,9 +81,9 @@ export default function Contact() {
           <Mail className="w-3.5 h-3.5" />
           <span>Get in Touch</span>
         </div>
-        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white">
-          Have a project or opportunity? <br />
-          <span className="text-gradient-cyan">Let&apos;s build something great.</span>
+        <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text block">Have a project or opportunity?</span>
+          <span className="liquid-glass-text-cyan block mt-1">Let&apos;s build something great.</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-xl">
           Whether you have an internship opportunity, a freelance project, or simply want to talk engineering—my inbox is always open.

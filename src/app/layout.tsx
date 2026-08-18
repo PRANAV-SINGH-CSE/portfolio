@@ -11,6 +11,7 @@ const inter = Inter({
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
+  weight: ['400', '600', '700', '800', '900'],
   display: 'swap',
 });
 
@@ -65,6 +66,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} dark`} data-theme="violet">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="icon" href="/favicon.png" type="image/png" />
         <link rel="shortcut icon" href="/favicon.png" type="image/png" />
         <link rel="apple-touch-icon" href="/favicon.png" />

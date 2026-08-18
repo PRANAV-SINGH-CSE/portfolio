@@ -97,9 +97,8 @@ export default function Navbar({
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 w-full py-4 sm:py-5 ${
-          isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
-        }`}
+        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 w-full py-4 sm:py-5 ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
+          }`}
       >
         <div className="relative w-full flex items-center justify-between">
           {/* Left Corner: Brand & Profile Picture Avatar Badge */}
@@ -147,9 +146,8 @@ export default function Navbar({
                 y: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
                 layout: { type: 'spring', stiffness: 380, damping: 32, mass: 0.8 },
               }}
-              className={`h-12 sm:h-14 flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu ${
-                !isNavVisible ? 'pointer-events-none' : 'pointer-events-auto'
-              }`}
+              className={`h-12 sm:h-14 flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu ${!isNavVisible ? 'pointer-events-none' : 'pointer-events-auto'
+                }`}
             >
               {/* Primary 5 Visible Nav Items (HOME through EXPERIENCE) */}
               {primaryNavItems.map((item) => {
@@ -161,13 +159,12 @@ export default function Navbar({
                     key={item.id}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
-                      isActive
+                    className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${isActive
                         ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
                         : isHovered
-                        ? 'text-white'
-                        : 'text-zinc-400 hover:text-zinc-100'
-                    }`}
+                          ? 'text-white'
+                          : 'text-zinc-400 hover:text-zinc-100'
+                      }`}
                   >
                     {/* Raised Glossy Beveled Hover Capsule */}
                     {isHovered && (
@@ -229,13 +226,12 @@ export default function Navbar({
                           key={item.id}
                           onMouseEnter={() => setHoveredItem(item.id)}
                           onClick={() => scrollToSection(item.id)}
-                          className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
-                            isActive
+                          className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${isActive
                               ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
                               : isHovered
-                              ? 'text-white'
-                              : 'text-zinc-400 hover:text-zinc-100'
-                          }`}
+                                ? 'text-white'
+                                : 'text-zinc-400 hover:text-zinc-100'
+                            }`}
                         >
                           {isHovered && (
                             <motion.span
@@ -346,11 +342,10 @@ export default function Navbar({
                     <button
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
-                      className={`flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-extrabold tracking-[0.16em] uppercase transition-all text-left ${
-                        isActive
+                      className={`flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-extrabold tracking-[0.16em] uppercase transition-all text-left ${isActive
                           ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
                           : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
-                      }`}
+                        }`}
                     >
                       <div className="flex items-center gap-3">
                         <IconComponent className={`w-4 h-4 ${isActive ? 'text-cyan-400' : 'text-zinc-400'}`} />

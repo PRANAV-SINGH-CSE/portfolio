@@ -173,8 +173,9 @@ export default function GithubActivity() {
           <GitHubIcon className="w-3.5 h-3.5" />
           <span>Real-Time GitHub Activity</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">
-          GitHub <span className="text-gradient-emerald">Activity & Code Metrics</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">GitHub</span>{' '}
+          <span className="liquid-glass-text-cyan">Activity & Code Metrics</span>
         </h2>
         <p className="text-xs sm:text-base text-zinc-400 max-w-xl">
           Live commit cadence, real open-source repositories, and verified developer contribution analytics.

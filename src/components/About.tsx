@@ -70,8 +70,9 @@ export default function About() {
           <BookOpen className="w-3.5 h-3.5" />
           <span>About My Journey</span>
         </div>
-        <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
-          Engineering with <span className="text-gradient-cyan">Precision & Passion</span>
+        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
+          <span className="liquid-glass-text">Engineering with</span>{' '}
+          <span className="liquid-glass-text-cyan">Precision & Passion</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-2xl">
           A short overview of my academic foundation at Lovely Professional University, technical focus, and architectural philosophy.

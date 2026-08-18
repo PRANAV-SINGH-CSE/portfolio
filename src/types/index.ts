@@ -106,14 +106,14 @@ export interface CertificateItem {
   title: string;
   issuer: string;
   collaborator?: string;
-  issuerCategory: 'Infosys' | 'iamneo' | 'Academic' | 'Industry';
+  issuerCategory: 'Infosys' | 'iamneo' | 'CipherSchools' | 'Academic' | 'Industry';
   issueDate: string;
   period?: string;
   credentialId?: string;
   verificationUrl?: string;
   pdfUrl: string;
   previewImage: string;
-  category: 'Languages & OOP' | 'Data Structures & Algorithms' | 'Databases & Systems';
+  category: 'Full-Stack & Web' | 'Languages & OOP' | 'Data Structures & Algorithms' | 'Databases & Systems';
   skills: string[];
   description: string;
   signatory?: string;
