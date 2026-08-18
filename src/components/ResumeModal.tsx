@@ -11,7 +11,7 @@ import {
   FileText,
   ExternalLink,
 } from 'lucide-react';
-import { resumeData, personalInfo } from '@/data/portfolioData';
+import { resumeData, personalInfo, certificatesData } from '@/data/portfolioData';
 
 interface ResumeModalProps {
   isOpen: boolean;
@@ -51,6 +51,17 @@ Frontend: ${resumeData.technicalSkills.frontend}
 Backend & Databases: ${resumeData.technicalSkills.backendDatabases}
 AI & Tooling: ${resumeData.technicalSkills.aiTooling}
 
+EXPERIENCE & INTERNSHIPS
+${resumeData.experience
+  .map(
+    (exp) => `
+${exp.role} — ${exp.company} (${exp.period}) | ${exp.location}
+Official Site: ${exp.officialUrl} | Dev Staging: ${exp.devUrl}
+${exp.bullets.map((b) => `• ${b}`).join('\n')}
+`
+  )
+  .join('\n')}
+
 PROJECTS
 ${resumeData.projects
   .map(
@@ -66,6 +77,9 @@ ${p.bullets.map((b) => `• ${b}`).join('\n')}
 EDUCATION
 ${resumeData.education.institution}
 ${resumeData.education.degree}
+
+CERTIFICATIONS & CREDENTIALS
+${certificatesData.map((c) => `• ${c.title} — ${c.issuer} (${c.issueDate})${c.credentialId ? ` [ID: ${c.credentialId}]` : ''}`).join('\n')}
     `.trim();
 
     navigator.clipboard.writeText(text);
@@ -223,6 +237,45 @@ ${resumeData.education.degree}
                 </div>
               </div>
 
+              {/* Experience & Internships */}
+              <div className="space-y-4 border-b border-white/10 print:border-zinc-300 pb-5">
+                <h2 className="text-xs font-mono uppercase tracking-wider text-cyan-400 print:text-zinc-900 font-bold border-b border-white/5 pb-1">
+                  WORK EXPERIENCE & INTERNSHIPS
+                </h2>
+
+                <div className="space-y-4">
+                  {resumeData.experience.map((exp, idx) => (
+                    <div key={idx} className="space-y-1.5">
+                      <div className="flex flex-wrap items-baseline justify-between gap-1">
+                        <h3 className="text-xs sm:text-sm font-bold text-white print:text-black">
+                          {exp.role} <span className="text-cyan-400 font-normal">@ {exp.company}</span>
+                        </h3>
+                        <span className="text-[11px] font-mono text-zinc-400 print:text-zinc-600 font-medium">
+                          {exp.period} | {exp.location}
+                        </span>
+                      </div>
+                      <div className="flex flex-wrap gap-3 text-[11px] font-mono text-cyan-400 print:text-zinc-600">
+                        {exp.officialUrl && (
+                          <a href={exp.officialUrl} target="_blank" rel="noreferrer" className="underline hover:text-cyan-300">
+                            Official Site: {exp.officialUrl}
+                          </a>
+                        )}
+                        {exp.devUrl && (
+                          <a href={exp.devUrl} target="_blank" rel="noreferrer" className="underline hover:text-cyan-300">
+                            Dev Staging: {exp.devUrl}
+                          </a>
+                        )}
+                      </div>
+                      <ul className="list-disc list-outside pl-4 space-y-1 text-xs text-zinc-300 print:text-zinc-800 leading-relaxed pt-0.5">
+                        {exp.bullets.map((b, bIdx) => (
+                          <li key={bIdx}>{b}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Projects */}
               <div className="space-y-4 border-b border-white/10 print:border-zinc-300 pb-5">
                 <h2 className="text-xs font-mono uppercase tracking-wider text-cyan-400 print:text-zinc-900 font-bold border-b border-white/5 pb-1">
@@ -268,7 +321,7 @@ ${resumeData.education.degree}
               </div>
 
               {/* Education */}
-              <div className="space-y-2">
+              <div className="space-y-2 border-b border-white/10 print:border-zinc-300 pb-4">
                 <h2 className="text-xs font-mono uppercase tracking-wider text-cyan-400 print:text-zinc-900 font-bold border-b border-white/5 pb-1">
                   EDUCATION
                 </h2>
@@ -279,6 +332,29 @@ ${resumeData.education.degree}
                   <p className="text-zinc-400 print:text-zinc-700">
                     {resumeData.education.degree}
                   </p>
+                </div>
+              </div>
+
+              {/* Certifications & Credentials */}
+              <div className="space-y-2">
+                <h2 className="text-xs font-mono uppercase tracking-wider text-cyan-400 print:text-zinc-900 font-bold border-b border-white/5 pb-1">
+                  VERIFIED CERTIFICATIONS & CREDENTIALS
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300 print:text-zinc-800">
+                  {certificatesData.map((c) => (
+                    <div
+                      key={c.id}
+                      className="p-2.5 rounded-xl bg-white/[0.02] border border-white/5 print:border-zinc-200 space-y-0.5"
+                    >
+                      <p className="font-bold text-white print:text-black">{c.title}</p>
+                      <p className="text-[11px] text-zinc-400 print:text-zinc-600">
+                        {c.issuer} • <span className="text-cyan-400 print:text-zinc-800">{c.issueDate}</span>
+                      </p>
+                      {c.credentialId && (
+                        <p className="text-[10px] font-mono text-zinc-500">ID: {c.credentialId}</p>
+                      )}
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>

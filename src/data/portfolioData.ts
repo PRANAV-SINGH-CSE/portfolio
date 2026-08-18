@@ -4,6 +4,7 @@ import {
   ExperienceItem,
   EducationItem,
   DeveloperStat,
+  CertificateItem,
 } from '@/types';
 
 export const personalInfo = {
@@ -395,6 +396,42 @@ export const featuredProjects: Project[] = [
 
 export const experienceItems: ExperienceItem[] = [
   {
+    id: 'hackiware-internship',
+    role: 'Frontend Developer Intern',
+    organization: 'Hackiware',
+    period: 'Sep 2025 – Mar 2026',
+    location: 'Remote, India',
+    type: 'Internship',
+    badge: 'Startup Internship',
+    description: [
+      'Developed the startup’s official web platform from scratch as Lead Frontend Developer, engineering modern component-driven architectures, responsive UI, and interactive features.',
+      'Shipped the official production platform (hackiware.com) alongside iterative staging release pipelines (hacki-green.vercel.app) using Next.js, React, and Tailwind CSS.',
+      'Collaborated closely with founding leadership to translate cyber product specifications into high-performance, SEO-optimized web experiences.',
+    ],
+    skills: [
+      'Next.js',
+      'React.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'JavaScript',
+      'HTML5/CSS3',
+      'Vercel',
+      'Responsive Design',
+    ],
+    links: [
+      {
+        label: 'Official Site (hackiware.com)',
+        url: 'https://www.hackiware.com/',
+        type: 'live',
+      },
+      {
+        label: 'Dev Staging (hacki-green.vercel.app)',
+        url: 'https://hacki-green.vercel.app/',
+        type: 'dev',
+      },
+    ],
+  },
+  {
     id: 'full-stack-eng',
     role: 'Full Stack Developer',
     organization: 'Project & Open-Source Engineering',
@@ -519,6 +556,21 @@ export const resumeData = {
     backendDatabases: 'Node.js, Flask, FastAPI, REST APIs, WebSockets, MySQL, Firebase, Firestore, Realtime Database',
     aiTooling: 'OpenAI API, Anthropic API, Gemini API, LLM Integration, Prompt Engineering, Git, GitHub, GitHub Actions, CI/CD, Vercel',
   },
+  experience: [
+    {
+      role: 'Frontend Developer Intern',
+      company: 'Hackiware',
+      period: 'Sep 2025 – Mar 2026',
+      location: 'Remote',
+      officialUrl: 'https://www.hackiware.com/',
+      devUrl: 'https://hacki-green.vercel.app/',
+      bullets: [
+        'Developed the startup’s official web platform from scratch as Lead Frontend Developer using Next.js, React, and Tailwind CSS.',
+        'Shipped both production platform (hackiware.com) and staging release pipeline (hacki-green.vercel.app) with high-performance responsive UI and cybersecurity showcases.',
+        'Collaborated directly with core leadership to transform cyber product specifications into modern, fast, SEO-optimized web experiences.',
+      ],
+    },
+  ],
   projects: [
     {
       name: 'Sprinto — Real-Time Collaborative Workspace & Kanban Platform',
@@ -563,3 +615,122 @@ export const resumeData = {
     degree: 'B.Tech, Computer Science and Engineering; TGPA:8.4',
   },
 };
+
+export const certificatesData: CertificateItem[] = [
+  {
+    id: 'dsa-iamneo',
+    title: 'Data Structure and Algorithm',
+    issuer: 'iamneo (An NIIT Venture)',
+    collaborator: 'Lovely Professional University',
+    issuerCategory: 'iamneo',
+    issueDate: 'June 16, 2026',
+    period: '25-Jul-2025 to 15-Jan-2026',
+    credentialId: '290m8C22c76bN5dO7BP1',
+    pdfUrl: '/certificates/dsa.pdf',
+    previewImage: '/certificates/previews/dsa.png',
+    category: 'Data Structures & Algorithms',
+    skills: [
+      'Data Structures',
+      'Algorithms',
+      'Trees & Graphs',
+      'Dynamic Programming',
+      'Complexity Analysis',
+      'Recursion',
+    ],
+    description:
+      'Demonstrated strong commitment, consistency, and problem-solving excellence across core algorithmic design, asymptotic complexity, linear & non-linear data structures, and optimal time-space tradeoffs.',
+    signatory: 'Senthikumar TP (Co-Founder & CEO, iamneo)',
+  },
+  {
+    id: 'dbms-infosys',
+    title: 'Database Management System Part - 1',
+    issuer: 'Infosys | Springboard',
+    issuerCategory: 'Infosys',
+    issueDate: 'July 20, 2026',
+    verificationUrl: 'https://verify.onwingspan.com',
+    pdfUrl: '/certificates/dbms.pdf',
+    previewImage: '/certificates/previews/dbms.png',
+    category: 'Databases & Systems',
+    skills: [
+      'DBMS',
+      'Relational Models',
+      'SQL Queries',
+      'Schema Normalization',
+      'ACID Transactions',
+      'Indexing',
+    ],
+    description:
+      'Mastered relational database concepts, ER modeling, SQL querying, transactional integrity, data normalization (1NF to 3NF/BCNF), and performance optimization.',
+    signatory: 'Satheesha B. Nanjappa (Senior Vice President, Infosys Limited)',
+  },
+  {
+    id: 'java-iamneo',
+    title: 'Programming in JAVA',
+    issuer: 'iamneo (An NIIT Venture)',
+    collaborator: 'Lovely Professional University',
+    issuerCategory: 'iamneo',
+    issueDate: 'May 21, 2026',
+    period: '18-Jan-2026 to 20-May-2026',
+    credentialId: '240L8cM6Aj0ck6Dl3Bm1',
+    pdfUrl: '/certificates/java.pdf',
+    previewImage: '/certificates/previews/java.png',
+    category: 'Languages & OOP',
+    skills: [
+      'Java',
+      'OOP Design',
+      'Multithreading',
+      'Collections Framework',
+      'Exception Handling',
+      'JVM Internals',
+    ],
+    description:
+      'Comprehensive certification in Java enterprise programming covering object-oriented architecture, thread concurrency, memory models, stream APIs, and robust application structure.',
+    signatory: 'Senthikumar TP (Co-Founder & CEO, iamneo)',
+  },
+  {
+    id: 'cpp-infosys',
+    title: 'Programming Using C++',
+    issuer: 'Infosys | Springboard',
+    issuerCategory: 'Infosys',
+    issueDate: 'August 12, 2025',
+    verificationUrl: 'https://verify.onwingspan.com',
+    pdfUrl: '/certificates/c++.pdf',
+    previewImage: '/certificates/previews/c++.png',
+    category: 'Languages & OOP',
+    skills: [
+      'C++',
+      'Object-Oriented Programming',
+      'STL',
+      'Pointers & References',
+      'Memory Management',
+      'Polymorphism',
+    ],
+    description:
+      'Certified by Infosys in high-performance C++ systems development, standard template library (STL), RAII memory patterns, virtual dispatch, and low-level resource management.',
+    signatory: 'Thirumala Arohi (Executive Vice President, Infosys Limited)',
+  },
+  {
+    id: 'c-iamneo',
+    title: 'Computer Programming (C Language)',
+    issuer: 'iamneo',
+    collaborator: 'Lovely Professional University',
+    issuerCategory: 'iamneo',
+    issueDate: 'May 05, 2025',
+    period: 'January 2025 to May 2025',
+    hours: '72 Hours',
+    credentialId: '22DJ30K8bL5bM5Aj0Bk1',
+    pdfUrl: '/certificates/C.pdf',
+    previewImage: '/certificates/previews/c.png',
+    category: 'Languages & OOP',
+    skills: [
+      'C Programming',
+      'Pointers & Dynamic Memory',
+      'Data Structures in C',
+      'Low-Level Systems',
+      'File I/O',
+    ],
+    description:
+      '72-hour comprehensive hands-on program on the iamneo platform mastering procedural programming, pointer arithmetic, memory management with malloc/free, and modular architecture.',
+    signatory: 'Senthil Kumar TP (Co-Founder & CEO, iamneo)',
+  },
+];

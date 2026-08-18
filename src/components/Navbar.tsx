@@ -14,6 +14,7 @@ import {
   Mail,
   Sparkles,
   Zap,
+  Award,
 } from 'lucide-react';
 
 interface NavbarProps {
@@ -22,14 +23,20 @@ interface NavbarProps {
   isHidden?: boolean;
 }
 
-const navItems = [
+const primaryNavItems = [
   { id: 'hero', label: 'HOME', icon: Terminal },
   { id: 'about', label: 'ABOUT', icon: User },
   { id: 'skills', label: 'SKILLS', icon: Layers },
   { id: 'projects', label: 'PROJECTS', icon: Sparkles },
   { id: 'experience', label: 'EXPERIENCE', icon: Briefcase },
+];
+
+const collapsibleNavItems = [
+  { id: 'certificates', label: 'CERTIFICATES', icon: Award },
   { id: 'contact', label: 'CONTACT', icon: Mail },
 ];
+
+const allNavItems = [...primaryNavItems, ...collapsibleNavItems];
 
 export default function Navbar({
   activeSection,
@@ -38,7 +45,13 @@ export default function Navbar({
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
+  const [isNavHovered, setIsNavHovered] = useState(false);
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
+
+  const isExpanded =
+    isNavHovered ||
+    activeSection === 'certificates' ||
+    activeSection === 'contact';
 
   useEffect(() => {
     let lastScroll = window.scrollY;
@@ -116,23 +129,30 @@ export default function Navbar({
             </span>
           </motion.button>
 
-          {/* Centered Navigation Pill: Smooth Hardware-Accelerated Auto-Hide/Reveal */}
+          {/* Centered Navigation Pill: Smooth Hardware-Accelerated Dynamic Expand/Collapse on Hover */}
           <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 pointer-events-auto">
             <motion.nav
-              onMouseLeave={() => setHoveredItem(null)}
+              layout
+              onMouseEnter={() => setIsNavHovered(true)}
+              onMouseLeave={() => {
+                setIsNavHovered(false);
+                setHoveredItem(null);
+              }}
               animate={{
                 opacity: isNavVisible ? 1 : 0,
                 y: isNavVisible ? 0 : -90,
               }}
               transition={{
-                duration: 0.28,
-                ease: [0.16, 1, 0.3, 1],
+                opacity: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+                y: { duration: 0.28, ease: [0.16, 1, 0.3, 1] },
+                layout: { type: 'spring', stiffness: 380, damping: 32, mass: 0.8 },
               }}
-              className={`h-12 sm:h-14 flex items-center gap-1 sm:gap-1.5 px-4 lg:px-6 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu ${
+              className={`h-12 sm:h-14 flex items-center gap-1 sm:gap-1.5 px-3.5 sm:px-4.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu ${
                 !isNavVisible ? 'pointer-events-none' : 'pointer-events-auto'
               }`}
             >
-              {navItems.map((item) => {
+              {/* Primary 5 Visible Nav Items (HOME through EXPERIENCE) */}
+              {primaryNavItems.map((item) => {
                 const isActive = activeSection === item.id;
                 const isHovered = hoveredItem === item.id;
 
@@ -141,7 +161,7 @@ export default function Navbar({
                     key={item.id}
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onClick={() => scrollToSection(item.id)}
-                    className={`relative px-4 py-2 rounded-full text-xs font-extrabold tracking-[0.16em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
+                    className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
                       isActive
                         ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
                         : isHovered
@@ -167,6 +187,89 @@ export default function Navbar({
                   </button>
                 );
               })}
+
+              {/* Extra 2 Nav Items (CERTIFICATES & CONTACT) that expand on hover */}
+              <AnimatePresence initial={false}>
+                {isExpanded ? (
+                  <motion.div
+                    key="expanded-nav-group"
+                    initial={{ opacity: 0, width: 0, scale: 0.94, filter: 'blur(4px)' }}
+                    animate={{
+                      opacity: 1,
+                      width: 'auto',
+                      scale: 1,
+                      filter: 'blur(0px)',
+                      transition: {
+                        width: { type: 'spring', stiffness: 380, damping: 30, mass: 0.8 },
+                        opacity: { duration: 0.22, delay: 0.04 },
+                        scale: { duration: 0.22 },
+                        filter: { duration: 0.18 },
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      width: 0,
+                      scale: 0.94,
+                      filter: 'blur(4px)',
+                      transition: {
+                        opacity: { duration: 0.15 },
+                        width: { type: 'spring', stiffness: 400, damping: 35, mass: 0.8 },
+                        scale: { duration: 0.15 },
+                        filter: { duration: 0.15 },
+                      },
+                    }}
+                    className="flex items-center gap-1 sm:gap-1.5 overflow-hidden whitespace-nowrap"
+                  >
+                    {collapsibleNavItems.map((item) => {
+                      const isActive = activeSection === item.id;
+                      const isHovered = hoveredItem === item.id;
+
+                      return (
+                        <button
+                          key={item.id}
+                          onMouseEnter={() => setHoveredItem(item.id)}
+                          onClick={() => scrollToSection(item.id)}
+                          className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${
+                            isActive
+                              ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
+                              : isHovered
+                              ? 'text-white'
+                              : 'text-zinc-400 hover:text-zinc-100'
+                          }`}
+                        >
+                          {isHovered && (
+                            <motion.span
+                              layoutId="hoverNavCapsule"
+                              transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                              className="absolute inset-0 rounded-full bg-gradient-to-b from-[#2e3c5c]/90 via-[#1c263f]/95 to-[#0d1424] border border-white/[0.22] shadow-[0_6px_22px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4),0_0_16px_rgba(255,255,255,0.1)] -z-10"
+                            />
+                          )}
+
+                          <span className="relative z-10">{item.label}</span>
+
+                          {isActive && (
+                            <span className="absolute -bottom-1.5 left-2.5 right-2.5 h-[2.5px] rounded-full bg-cyan-400 shadow-[0_0_12px_#06b6d4,0_0_24px_#06b6d4] transition-all duration-200" />
+                          )}
+                        </button>
+                      );
+                    })}
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="collapsed-indicator"
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.8 }}
+                    transition={{ duration: 0.15 }}
+                    className="flex items-center px-1 text-zinc-500 hover:text-cyan-400 transition-colors cursor-pointer select-none"
+                    title="Hover to view more options (Certificates & Contact)"
+                  >
+                    <span className="inline-flex items-center gap-0.5 text-[9px] font-mono tracking-widest font-bold opacity-60">
+                      •••
+                    </span>
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Integrated Resume Button inside Capsule */}
               <div className="h-5 w-[1px] bg-white/20 mx-1 shrink-0" />
@@ -236,7 +339,7 @@ export default function Navbar({
               </div>
 
               <div className="flex flex-col gap-1.5">
-                {navItems.map((item) => {
+                {allNavItems.map((item) => {
                   const IconComponent = item.icon;
                   const isActive = activeSection === item.id;
                   return (

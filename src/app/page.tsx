@@ -9,25 +9,29 @@ import Skills from '@/components/Skills';
 import Projects from '@/components/Projects';
 import Experience from '@/components/Experience';
 import Education from '@/components/Education';
+import Certificates from '@/components/Certificates';
 import GithubActivity from '@/components/GithubActivity';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 import ResumeModal from '@/components/ResumeModal';
 import CaseStudyModal from '@/components/CaseStudyModal';
+import CertificateModal from '@/components/CertificateModal';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import ScrollToTop from '@/components/ScrollToTop';
-import { Project } from '@/types';
+import { Project, CertificateItem } from '@/types';
+import { certificatesData } from '@/data/portfolioData';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState<string>('hero');
   const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<CertificateItem | null>(null);
 
-  const isModalOpen = Boolean(isResumeOpen || selectedProject);
+  const isModalOpen = Boolean(isResumeOpen || selectedProject || selectedCertificate);
 
   // Section observer to update active nav link
   useEffect(() => {
-    const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'github', 'contact'];
+    const sections = ['hero', 'about', 'skills', 'projects', 'experience', 'education', 'certificates', 'github', 'contact'];
 
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 200;
@@ -85,6 +89,9 @@ export default function Home() {
         {/* 7. Education */}
         <Education />
 
+        {/* 8. Verified Certifications & Credentials */}
+        <Certificates onSelectCertificate={(cert) => setSelectedCertificate(cert)} />
+
         {/* 9. GitHub Activity & Live Code Metrics */}
         <GithubActivity />
 
@@ -102,6 +109,14 @@ export default function Home() {
       <CaseStudyModal
         project={selectedProject}
         onClose={() => setSelectedProject(null)}
+      />
+
+      {/* Interactive Certificate Lightbox Modal */}
+      <CertificateModal
+        certificate={selectedCertificate}
+        allCertificates={certificatesData}
+        onClose={() => setSelectedCertificate(null)}
+        onSelectCertificate={(cert) => setSelectedCertificate(cert)}
       />
 
       {/* 10. Interactive Resume Modal */}

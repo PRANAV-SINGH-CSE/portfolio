@@ -7,7 +7,10 @@ import {
   Calendar,
   MapPin,
   CheckCircle2,
+  ExternalLink,
+  Globe,
   Sparkles,
+  Code2,
 } from 'lucide-react';
 import { experienceItems } from '@/data/portfolioData';
 
@@ -30,7 +33,7 @@ export default function Experience() {
           Experience & <span className="text-gradient-cyan">Engineering Journey</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-xl">
-          Core development roles, production deployments, and academic accomplishments.
+          Core development roles, production deployments, startup internships, and academic accomplishments.
         </p>
       </motion.div>
 
@@ -54,16 +57,29 @@ export default function Experience() {
               className="rounded-3xl liquid-glass-card p-6 sm:p-7 border border-white/10 space-y-4 hover:border-cyan-500/30 transition-all"
             >
               {/* Header Row */}
-              <div className="flex flex-wrap items-start justify-between gap-2">
+              <div className="flex flex-wrap items-start justify-between gap-3">
                 <div>
-                  <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-cyan-500/10 text-cyan-300 border border-cyan-400/20 whitespace-nowrap">
-                    {item.badge}
-                  </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-cyan-300 transition-colors">
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium whitespace-nowrap ${
+                        item.type === 'Internship'
+                          ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 shadow-[0_0_10px_rgba(52,211,153,0.2)]'
+                          : 'bg-cyan-500/10 text-cyan-300 border border-cyan-400/20'
+                      }`}
+                    >
+                      {item.badge}
+                    </span>
+                    {item.type === 'Internship' && (
+                      <span className="text-[10px] font-mono text-emerald-400 font-semibold flex items-center gap-1">
+                        <Sparkles className="w-3 h-3" /> Production Shipped
+                      </span>
+                    )}
+                  </div>
+                  <h3 className="text-lg sm:text-xl font-bold text-white mt-1.5 group-hover:text-cyan-300 transition-colors">
                     {item.role}
                   </h3>
-                  <p className="text-xs sm:text-sm font-semibold text-zinc-300">
-                    {item.organization}
+                  <p className="text-xs sm:text-sm font-semibold text-zinc-300 flex items-center gap-1.5">
+                    <span>{item.organization}</span>
                   </p>
                 </div>
 
@@ -82,15 +98,34 @@ export default function Experience() {
               {/* Bullets */}
               <div className="space-y-2 pt-2 border-t border-white/5">
                 {item.description.map((desc, dIdx) => (
-                  <div key={dIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300">
+                  <div key={dIdx} className="flex items-start gap-2.5 text-xs sm:text-sm text-zinc-300 leading-relaxed">
                     <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0 mt-0.5" />
                     <span>{desc}</span>
                   </div>
                 ))}
               </div>
 
+              {/* Links / Websites if available */}
+              {item.links && item.links.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 pt-2">
+                  {item.links.map((link) => (
+                    <a
+                      key={link.url}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-mono font-bold bg-white/[0.04] hover:bg-white/[0.09] text-cyan-300 hover:text-white border border-cyan-400/20 hover:border-cyan-400/50 shadow-sm transition-all cursor-pointer"
+                    >
+                      <Globe className="w-3.5 h-3.5 text-cyan-400" />
+                      <span>{link.label}</span>
+                      <ExternalLink className="w-3 h-3 opacity-70" />
+                    </a>
+                  ))}
+                </div>
+              )}
+
               {/* Skills used */}
-              <div className="flex flex-wrap gap-1.5 pt-2">
+              <div className="flex flex-wrap gap-1.5 pt-1">
                 {item.skills.map((skill) => (
                   <span
                     key={skill}

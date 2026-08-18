@@ -62,10 +62,15 @@ export interface ExperienceItem {
   organization: string;
   period: string;
   location: string;
-  type: 'Freelance' | 'Hackathon' | 'Community' | 'Open Source';
+  type: 'Internship' | 'Freelance' | 'Hackathon' | 'Community' | 'Open Source';
   description: string[];
   skills: string[];
   badge: string;
+  links?: {
+    label: string;
+    url: string;
+    type?: 'live' | 'dev' | 'github';
+  }[];
 }
 
 export interface EducationItem {
@@ -94,4 +99,23 @@ export interface DeveloperStat {
   value: string;
   detail: string;
   color: string;
+}
+
+export interface CertificateItem {
+  id: string;
+  title: string;
+  issuer: string;
+  collaborator?: string;
+  issuerCategory: 'Infosys' | 'iamneo' | 'Academic' | 'Industry';
+  issueDate: string;
+  period?: string;
+  credentialId?: string;
+  verificationUrl?: string;
+  pdfUrl: string;
+  previewImage: string;
+  category: 'Languages & OOP' | 'Data Structures & Algorithms' | 'Databases & Systems';
+  skills: string[];
+  description: string;
+  signatory?: string;
+  hours?: string;
 }

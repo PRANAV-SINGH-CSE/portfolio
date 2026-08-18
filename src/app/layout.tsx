@@ -51,9 +51,9 @@ export const metadata: Metadata = {
     creator: '@pranav_builds',
   },
   icons: {
-    icon: '/profile.jpg',
-    shortcut: '/profile.jpg',
-    apple: '/profile.jpg',
+    icon: { url: '/favicon.png', type: 'image/png' },
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
@@ -65,9 +65,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${outfit.variable} dark`} data-theme="violet">
       <head>
-        <link rel="icon" href="/profile.jpg" />
-        <link rel="shortcut icon" href="/profile.jpg" />
-        <link rel="apple-touch-icon" href="/profile.jpg" />
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="shortcut icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/favicon.png" />
       </head>
       <body className="min-h-screen bg-[#030712] font-sans antialiased text-zinc-100">
         {children}
