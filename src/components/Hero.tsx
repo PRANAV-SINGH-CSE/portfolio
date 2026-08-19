@@ -18,9 +18,10 @@ import { GitHubIcon, LinkedInIcon } from '@/components/Icons';
 
 interface HeroProps {
   onOpenResume: () => void;
+  isIntroDone?: boolean;
 }
 
-export default function Hero({ onOpenResume }: HeroProps) {
+export default function Hero({ onOpenResume, isIntroDone = true }: HeroProps) {
   const [activeTab, setActiveTab] = useState<'architecture' | 'stack' | 'terminal'>('architecture');
   const [copiedEmail, setCopiedEmail] = useState(false);
 
@@ -42,42 +43,41 @@ export default function Hero({ onOpenResume }: HeroProps) {
   return (
     <section
       id="hero"
-      className="relative min-h-0 lg:min-h-[90vh] flex items-start lg:items-center justify-center pt-24 sm:pt-32 lg:pt-40 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
+      className="relative min-h-0 lg:min-h-[90vh] flex items-start lg:items-center justify-center pt-28 sm:pt-36 lg:pt-44 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto overflow-hidden w-full"
     >
       <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
         {/* Left Column: High-Impact Positioning (7 Cols) */}
         <motion.div
           initial="hidden"
-          animate="visible"
+          animate={isIntroDone ? 'visible' : 'hidden'}
           variants={{
             hidden: { opacity: 0 },
             visible: {
               opacity: 1,
               transition: {
                 staggerChildren: 0.08,
-                delayChildren: 0.1,
+                delayChildren: 0.15,
               },
             },
           }}
-          className="lg:col-span-7 flex flex-col items-start text-left space-y-4 sm:space-y-5 w-full"
+          className="lg:col-span-7 flex flex-col items-start text-left space-y-4 sm:space-y-5 w-full transform-gpu"
         >
           {/* Status Badge with Pure Liquid Glass */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, scale: 0.5, y: -10 },
+              hidden: { opacity: 0, scale: 0.85, y: -10 },
               visible: {
                 opacity: 1,
                 scale: 1,
                 y: 0,
                 transition: {
-                  type: 'spring',
-                  stiffness: 350,
-                  damping: 15,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
             whileHover={{ scale: 1.04 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl text-[11px] sm:text-xs font-mono text-zinc-200 max-w-full cursor-default"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.16] shadow-[0_6px_20px_rgba(0,0,0,0.6),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl text-[11px] sm:text-xs font-mono text-zinc-200 max-w-full cursor-default transform-gpu"
           >
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0 shadow-[0_0_8px_#34d399]" />
             <span className="truncate font-semibold">Available for Full-Time Roles & Projects</span>
@@ -87,38 +87,34 @@ export default function Hero({ onOpenResume }: HeroProps) {
           <div className="space-y-1.5 sm:space-y-2">
             <motion.h2
               variants={{
-                hidden: { opacity: 0, scale: 0.8, y: 15 },
+                hidden: { opacity: 0, y: 15 },
                 visible: {
                   opacity: 1,
-                  scale: 1,
                   y: 0,
                   transition: {
-                    type: 'spring',
-                    stiffness: 280,
-                    damping: 18,
+                    duration: 0.5,
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 },
               }}
-              className="text-xs sm:text-sm font-mono uppercase tracking-widest text-cyan-400 font-bold"
+              className="text-xs sm:text-sm font-mono uppercase tracking-widest text-cyan-400 font-bold transform-gpu"
             >
               Hi, I&apos;m {personalInfo.name}
             </motion.h2>
 
             <motion.h1
               variants={{
-                hidden: { opacity: 0, scale: 0.85, y: 25 },
+                hidden: { opacity: 0, y: 20 },
                 visible: {
                   opacity: 1,
-                  scale: 1,
                   y: 0,
                   transition: {
-                    type: 'spring',
-                    stiffness: 240,
-                    damping: 18,
+                    duration: 0.55,
+                    ease: [0.16, 1, 0.3, 1],
                   },
                 },
               }}
-              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] space-y-1"
+              className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.18] space-y-1 transform-gpu"
             >
               <span className="liquid-glass-text block">Full-Stack</span>
               <span className="liquid-glass-text-cyan block">Developer &</span>
@@ -129,19 +125,17 @@ export default function Hero({ onOpenResume }: HeroProps) {
           {/* Positioning Statement */}
           <motion.p
             variants={{
-              hidden: { opacity: 0, scale: 0.9, y: 20 },
+              hidden: { opacity: 0, y: 15 },
               visible: {
                 opacity: 1,
-                scale: 1,
                 y: 0,
                 transition: {
-                  type: 'spring',
-                  stiffness: 240,
-                  damping: 20,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
-            className="text-sm sm:text-base text-zinc-300 font-medium leading-relaxed max-w-lg"
+            className="text-sm sm:text-base text-zinc-300 font-medium leading-relaxed max-w-lg transform-gpu"
           >
             {personalInfo.positioningStatement}
           </motion.p>
@@ -149,19 +143,17 @@ export default function Hero({ onOpenResume }: HeroProps) {
           {/* Detailed Statement */}
           <motion.p
             variants={{
-              hidden: { opacity: 0, scale: 0.95, y: 15 },
+              hidden: { opacity: 0, y: 15 },
               visible: {
                 opacity: 1,
-                scale: 1,
                 y: 0,
                 transition: {
-                  type: 'spring',
-                  stiffness: 220,
-                  damping: 20,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
-            className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-lg"
+            className="text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-lg transform-gpu"
           >
             {personalInfo.detailedDescription}
           </motion.p>
@@ -169,26 +161,24 @@ export default function Hero({ onOpenResume }: HeroProps) {
           {/* CTA Action Buttons in Pure Liquid Glass */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, scale: 0.8, y: 20 },
+              hidden: { opacity: 0, y: 15 },
               visible: {
                 opacity: 1,
-                scale: 1,
                 y: 0,
                 transition: {
-                  type: 'spring',
-                  stiffness: 280,
-                  damping: 18,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
-            className="flex flex-wrap items-center gap-3 pt-1 w-full sm:w-auto"
+            className="flex flex-wrap items-center gap-3 pt-1 w-full sm:w-auto transform-gpu"
           >
             {/* Primary CTA: Pure Liquid Glass Pill with Beveled Depth */}
             <motion.button
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => scrollToSection('projects')}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-gradient-to-b from-[#2e3c5e]/90 via-[#1a233b]/95 to-[#0b1020] border border-cyan-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),inset_0_1.5px_1.5px_rgba(255,255,255,0.4),0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-300 hover:shadow-[0_0_35px_rgba(6,182,212,0.6),inset_0_1.5px_1.5px_rgba(255,255,255,0.6)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap group"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-white bg-gradient-to-b from-[#2e3c5e]/90 via-[#1a233b]/95 to-[#0b1020] border border-cyan-400/40 shadow-[0_10px_35px_rgba(0,0,0,0.8),inset_0_1.5px_1.5px_rgba(255,255,255,0.4),0_0_20px_rgba(6,182,212,0.25)] hover:border-cyan-300 hover:shadow-[0_0_35px_rgba(6,182,212,0.6),inset_0_1.5px_1.5px_rgba(255,255,255,0.6)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap group transform-gpu"
             >
               <span>View Projects</span>
               <ArrowRight className="w-4 h-4 text-cyan-300 group-hover:translate-x-0.5 transition-transform" />
@@ -199,7 +189,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={onOpenResume}
-              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap"
+              className="flex-1 sm:flex-none inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(6,182,212,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap transform-gpu"
             >
               <Download className="w-4 h-4 text-cyan-400" />
               <span>Download CV</span>
@@ -210,7 +200,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               whileHover={{ scale: 1.05, y: -2 }}
               whileTap={{ scale: 0.96 }}
               onClick={() => scrollToSection('contact')}
-              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-purple-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-full text-xs sm:text-sm font-extrabold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.18] shadow-[0_8px_30px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] hover:border-purple-400/40 hover:text-white hover:shadow-[0_0_25px_rgba(168,85,247,0.3),inset_0_1.5px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer whitespace-nowrap transform-gpu"
             >
               <Mail className="w-4 h-4 text-purple-400" />
               <span>Contact Me</span>
@@ -220,18 +210,17 @@ export default function Hero({ onOpenResume }: HeroProps) {
           {/* Social Quick Links & Email Pill in Pure Liquid Glass */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, scale: 0.9 },
+              hidden: { opacity: 0, y: 15 },
               visible: {
                 opacity: 1,
-                scale: 1,
+                y: 0,
                 transition: {
-                  type: 'spring',
-                  stiffness: 240,
-                  damping: 18,
+                  duration: 0.5,
+                  ease: [0.16, 1, 0.3, 1],
                 },
               },
             }}
-            className="flex flex-wrap items-center gap-2.5 pt-1 w-full"
+            className="flex flex-wrap items-center gap-2.5 pt-1 w-full transform-gpu"
           >
             <motion.a
               whileHover={{ scale: 1.06, y: -2 }}
@@ -239,7 +228,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               href={personalInfo.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all transform-gpu"
               title="GitHub Profile"
             >
               <GitHubIcon className="w-3.5 h-3.5 text-zinc-300" />
@@ -252,7 +241,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               href={personalInfo.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-blue-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider uppercase text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-blue-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(59,130,246,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all transform-gpu"
               title="LinkedIn Profile"
             >
               <LinkedInIcon className="w-3.5 h-3.5 text-blue-400" />
@@ -264,7 +253,7 @@ export default function Hero({ onOpenResume }: HeroProps) {
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               onClick={copyEmail}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer max-w-full truncate"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-bold tracking-wider text-zinc-200 bg-gradient-to-b from-[#182035]/90 via-[#0e1424]/95 to-[#060914] border border-white/[0.14] shadow-[0_4px_16px_rgba(0,0,0,0.6),inset_0_1px_1px_rgba(255,255,255,0.2)] hover:border-cyan-400/40 hover:text-white hover:shadow-[0_0_20px_rgba(6,182,212,0.3),inset_0_1px_1px_rgba(255,255,255,0.35)] backdrop-blur-2xl transition-all cursor-pointer max-w-full truncate transform-gpu"
               title="Click to copy email address"
             >
               {copiedEmail ? (
@@ -282,17 +271,16 @@ export default function Hero({ onOpenResume }: HeroProps) {
           </motion.div>
         </motion.div>
 
-        {/* Right Column: Spring Pop Terminal Preview Card (5 Cols) */}
+        {/* Right Column: Terminal Preview Card (5 Cols) */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.75, y: 40 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.92, y: 30 }}
+          animate={isIntroDone ? { opacity: 1, scale: 1, y: 0 } : { opacity: 0, scale: 0.92, y: 30 }}
           transition={{
-            type: 'spring',
-            stiffness: 180,
-            damping: 15,
+            duration: 0.65,
+            ease: [0.16, 1, 0.3, 1],
             delay: 0.2,
           }}
-          className="lg:col-span-5 w-full max-w-full"
+          className="lg:col-span-5 w-full max-w-full transform-gpu"
         >
           <div className="relative rounded-3xl bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] p-4 sm:p-6 lg:p-7 border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.25)] overflow-hidden group space-y-4 max-w-full backdrop-blur-2xl">
             {/* Top specular glow effect */}
@@ -316,31 +304,28 @@ export default function Hero({ onOpenResume }: HeroProps) {
               <div className="flex items-center gap-1 bg-black/60 p-1 rounded-2xl border border-white/10 shrink-0">
                 <button
                   onClick={() => setActiveTab('architecture')}
-                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
-                    activeTab === 'architecture'
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${activeTab === 'architecture'
                       ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-cyan-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
-                  }`}
+                    }`}
                 >
                   Arch
                 </button>
                 <button
                   onClick={() => setActiveTab('stack')}
-                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
-                    activeTab === 'stack'
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${activeTab === 'stack'
                       ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-purple-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
-                  }`}
+                    }`}
                 >
                   Stack
                 </button>
                 <button
                   onClick={() => setActiveTab('terminal')}
-                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${
-                    activeTab === 'terminal'
+                  className={`px-3 py-1 rounded-xl text-[11px] sm:text-xs font-mono font-bold transition-all cursor-pointer ${activeTab === 'terminal'
                       ? 'bg-gradient-to-b from-[#2e3c5e]/90 via-[#1c263f]/95 to-[#0d1424] text-emerald-300 border border-white/20 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_1.5px_1px_rgba(255,255,255,0.4)]'
                       : 'text-zinc-400 hover:text-white hover:bg-white/[0.05]'
-                  }`}
+                    }`}
                 >
                   Live
                 </button>

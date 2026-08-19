@@ -334,3 +334,103 @@ body.modal-open header {
 .ripple-animate {
   animation: cursor-ripple 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+/* ========================================================================= */
+/* CINEMATIC INTRO CALLIGRAPHY STYLES                                        */
+/* ========================================================================= */
+.font-calligraphy {
+  font-family: var(--font-calligraphy), 'Great Vibes', 'Alex Brush', cursive, sans-serif;
+  letter-spacing: 0.02em;
+}
+
+.calligraphy-glow-white {
+  font-family: var(--font-calligraphy), 'Great Vibes', 'Alex Brush', cursive, sans-serif;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f8fafc 40%,
+    #e2e8f0 70%,
+    #cbd5e1 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.6))
+          drop-shadow(0 0 50px rgba(168, 85, 247, 0.35));
+}
+
+.calligraphy-glow-gradient {
+  font-family: var(--font-calligraphy), 'Great Vibes', 'Alex Brush', cursive, sans-serif;
+  background: linear-gradient(
+    135deg,
+    #ffffff 0%,
+    #f3e8ff 20%,
+    #c084fc 45%,
+    #a855f7 65%,
+    #38bdf8 85%,
+    #818cf8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.2);
+  filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.65))
+          drop-shadow(0 0 70px rgba(56, 189, 248, 0.45))
+          drop-shadow(0 0 100px rgba(236, 72, 153, 0.25));
+}
+
+@keyframes cursor-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scaleY(1);
+    box-shadow: 0 0 12px #a855f7, 0 0 24px #38bdf8;
+  }
+  50% {
+    opacity: 0.2;
+    transform: scaleY(0.85);
+    box-shadow: 0 0 4px #a855f7;
+  }
+}
+
+.intro-cursor {
+  animation: cursor-pulse 0.85s ease-in-out infinite;
+}
+
+@keyframes ambient-rotate {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.05);
+  }
+  100% {
+    transform: rotate(360deg) scale(1);
+  }
+}
+
+.animate-ambient-rotate {
+  animation: ambient-rotate 25s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ========================================================================= */
+/* FRAMER MOTION & HARDWARE ACCELERATION OPTIMIZATIONS                       */
+/* ========================================================================= */
+.transform-gpu {
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+.will-change-transform {
+  will-change: transform;
+}
+
+.will-change-opacity {
+  will-change: opacity;
+}
+
+.will-change-composite {
+  will-change: transform, opacity;
+}

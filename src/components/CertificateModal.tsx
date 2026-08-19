@@ -39,12 +39,13 @@ export default function CertificateModal({
 }: CertificateModalProps) {
   const [zoomLevel, setZoomLevel] = useState<number>(1);
   const [copiedId, setCopiedId] = useState<boolean>(false);
+  const [prevCertId, setPrevCertId] = useState<string | undefined>(certificate?.id);
 
-  // Reset zoom on certificate change
-  useEffect(() => {
+  if (certificate?.id !== prevCertId) {
+    setPrevCertId(certificate?.id);
     setZoomLevel(1);
     setCopiedId(false);
-  }, [certificate]);
+  }
 
   const currentIndex = certificate
     ? allCertificates.findIndex((c) => c.id === certificate.id)

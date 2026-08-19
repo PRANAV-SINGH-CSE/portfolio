@@ -17,9 +17,9 @@ export const fadeInUp: Variants = {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.55,
       delay,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.16, 1, 0.3, 1],
     },
   }),
 };
@@ -29,21 +29,21 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
+      staggerChildren: 0.08,
+      delayChildren: 0.04,
     },
   },
 };
 
 export const cardVariant: Variants = {
-  hidden: { opacity: 0, y: 25, scale: 0.98 },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
   visible: {
     opacity: 1,
     y: 0,
     scale: 1,
     transition: {
       duration: 0.5,
-      ease: [0.22, 1, 0.36, 1],
+      ease: [0.16, 1, 0.3, 1],
     },
   },
 };
@@ -52,20 +52,20 @@ export default function MotionReveal({
   children,
   delay = 0,
   direction = 'up',
-  duration = 0.6,
+  duration = 0.55,
   className = '',
   ...props
 }: RevealProps) {
   const getInitial = () => {
     switch (direction) {
       case 'up':
-        return { opacity: 0, y: 35 };
+        return { opacity: 0, y: 30 };
       case 'down':
-        return { opacity: 0, y: -35 };
+        return { opacity: 0, y: -30 };
       case 'left':
-        return { opacity: 0, x: 35 };
+        return { opacity: 0, x: 30 };
       case 'right':
-        return { opacity: 0, x: -35 };
+        return { opacity: 0, x: -30 };
       case 'none':
       default:
         return { opacity: 0 };
@@ -76,13 +76,13 @@ export default function MotionReveal({
     <motion.div
       initial={getInitial()}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
+      viewport={{ once: true, margin: '-40px' }}
       transition={{
         duration,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.16, 1, 0.3, 1],
       }}
-      className={className}
+      className={`transform-gpu ${className}`}
       {...props}
     >
       {children}

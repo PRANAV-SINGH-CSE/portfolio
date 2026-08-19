@@ -73,11 +73,10 @@ export default function Projects({
           <button
             key={cat}
             onClick={() => setActiveFilter(cat)}
-            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-              activeFilter.toLowerCase() === cat.toLowerCase()
+            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${activeFilter.toLowerCase() === cat.toLowerCase()
                 ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.35)]'
                 : 'liquid-glow-pill text-zinc-400 hover:text-white'
-            }`}
+              }`}
           >
             {cat === 'all' ? 'All Showcase' : cat}
           </button>
@@ -239,9 +238,8 @@ export default function Projects({
           >
             <span>{showAll ? 'Hide Projects (Show Less)' : `Show More Projects (+${filteredProjects.length - 2} More)`}</span>
             <ChevronDown
-              className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${
-                showAll ? 'rotate-180 -translate-y-0.5' : ''
-              }`}
+              className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${showAll ? 'rotate-180 -translate-y-0.5' : ''
+                }`}
             />
           </button>
         </motion.div>

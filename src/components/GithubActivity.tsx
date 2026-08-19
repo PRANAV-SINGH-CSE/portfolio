@@ -69,7 +69,7 @@ export default function GithubActivity() {
           const langMap: Record<string, number> = {};
           let totalCount = 0;
           if (Array.isArray(data.repos)) {
-            data.repos.forEach((r: any) => {
+            data.repos.forEach((r: { language?: string | null }) => {
               if (r.language) {
                 langMap[r.language] = (langMap[r.language] || 0) + 1;
                 totalCount++;
@@ -252,41 +252,41 @@ export default function GithubActivity() {
                   <div className="grid grid-flow-col grid-rows-7 gap-1">
                     {liveStats.weeks && liveStats.weeks.length > 0
                       ? liveStats.weeks.map((week, wIdx) =>
-                          week.contributionDays.map((day, dIdx) => (
+                        week.contributionDays.map((day, dIdx) => (
+                          <div
+                            key={`${wIdx}-${dIdx}`}
+                            onMouseEnter={() => setHoveredDay({ count: day.contributionCount, date: day.date })}
+                            onMouseLeave={() => setHoveredDay(null)}
+                            className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getHeatmapColorFromCount(
+                              day.contributionCount
+                            )}`}
+                            title={`${day.contributionCount} contributions on ${day.date}`}
+                          />
+                        ))
+                      )
+                      : fallbackWeeks.map((_, wIdx) =>
+                        fallbackDays.map((_, dIdx) => {
+                          const activityWeight = wIdx >= 14 ? 1.5 : (wIdx >= 8 ? 0.9 : 0.45);
+                          const seed = ((wIdx * 11 + dIdx * 17) % 100) * activityWeight;
+                          const count = seed > 80 ? 12 : seed > 55 ? 6 : seed > 30 ? 3 : seed > 10 ? 1 : 0;
+                          const fallbackDate = new Date();
+                          fallbackDate.setDate(fallbackDate.getDate() - ((29 - wIdx) * 7 + (6 - dIdx)));
+                          const dateStr = fallbackDate.toISOString().split('T')[0];
+
+                          return (
                             <div
                               key={`${wIdx}-${dIdx}`}
-                              onMouseEnter={() => setHoveredDay({ count: day.contributionCount, date: day.date })}
+                              onMouseEnter={() => setHoveredDay({ count, date: dateStr })}
                               onMouseLeave={() => setHoveredDay(null)}
-                              className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getHeatmapColorFromCount(
-                                day.contributionCount
+                              className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getFallbackColor(
+                                wIdx,
+                                dIdx
                               )}`}
-                              title={`${day.contributionCount} contributions on ${day.date}`}
+                              title={`${count} contributions on ${dateStr}`}
                             />
-                          ))
-                        )
-                      : fallbackWeeks.map((_, wIdx) =>
-                          fallbackDays.map((_, dIdx) => {
-                            const activityWeight = wIdx >= 14 ? 1.5 : (wIdx >= 8 ? 0.9 : 0.45);
-                            const seed = ((wIdx * 11 + dIdx * 17) % 100) * activityWeight;
-                            const count = seed > 80 ? 12 : seed > 55 ? 6 : seed > 30 ? 3 : seed > 10 ? 1 : 0;
-                            const fallbackDate = new Date();
-                            fallbackDate.setDate(fallbackDate.getDate() - ((29 - wIdx) * 7 + (6 - dIdx)));
-                            const dateStr = fallbackDate.toISOString().split('T')[0];
-
-                            return (
-                              <div
-                                key={`${wIdx}-${dIdx}`}
-                                onMouseEnter={() => setHoveredDay({ count, date: dateStr })}
-                                onMouseLeave={() => setHoveredDay(null)}
-                                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-[2.5px] transition-all hover:scale-125 hover:z-20 cursor-pointer ${getFallbackColor(
-                                  wIdx,
-                                  dIdx
-                                )}`}
-                                title={`${count} contributions on ${dateStr}`}
-                              />
-                            );
-                          })
-                        )}
+                          );
+                        })
+                      )}
                   </div>
                 </div>
               </div>

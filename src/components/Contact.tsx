@@ -49,7 +49,7 @@ export default function Contact() {
           origin: { y: 0.7 },
           colors: ['#06b6d4', '#6366f1', '#a855f7', '#10b981'],
         });
-      } catch (err) {
+      } catch {
         // ignore if not supported
       }
 

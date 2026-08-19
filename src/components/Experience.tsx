@@ -10,7 +10,6 @@ import {
   ExternalLink,
   Globe,
   Sparkles,
-  Code2,
 } from 'lucide-react';
 import { experienceItems } from '@/data/portfolioData';
 
@@ -62,11 +61,10 @@ export default function Experience() {
                 <div>
                   <div className="flex items-center gap-2">
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium whitespace-nowrap ${
-                        item.type === 'Internship'
+                      className={`px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium whitespace-nowrap ${item.type === 'Internship'
                           ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-400/30 shadow-[0_0_10px_rgba(52,211,153,0.2)]'
                           : 'bg-cyan-500/10 text-cyan-300 border border-cyan-400/20'
-                      }`}
+                        }`}
                     >
                       {item.badge}
                     </span>

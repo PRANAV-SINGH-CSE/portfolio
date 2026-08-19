@@ -21,6 +21,7 @@ interface NavbarProps {
   activeSection: string;
   onOpenResume: () => void;
   isHidden?: boolean;
+  isIntroDone?: boolean;
 }
 
 const primaryNavItems = [
@@ -42,6 +43,7 @@ export default function Navbar({
   activeSection,
   onOpenResume,
   isHidden = false,
+  isIntroDone = true,
 }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isNavVisible, setIsNavVisible] = useState(true);
@@ -96,9 +98,17 @@ export default function Navbar({
 
   return (
     <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 w-full py-4 sm:py-5 ${isHidden ? 'opacity-0 pointer-events-none' : 'opacity-100'
-          }`}
+      <motion.header
+        initial={{ y: -80, opacity: 0 }}
+        animate={
+          isIntroDone && !isHidden
+            ? { y: 0, opacity: 1 }
+            : { y: -80, opacity: 0 }
+        }
+        transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+        className={`fixed top-0 left-0 right-0 z-40 px-4 sm:px-8 lg:px-12 w-full py-4 sm:py-5 transform-gpu ${
+          isHidden ? 'pointer-events-none' : 'pointer-events-auto'
+        }`}
       >
         <div className="relative w-full flex items-center justify-between">
           {/* Left Corner: Brand & Profile Picture Avatar Badge */}
@@ -160,10 +170,10 @@ export default function Navbar({
                     onMouseEnter={() => setHoveredItem(item.id)}
                     onClick={() => scrollToSection(item.id)}
                     className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${isActive
-                        ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
-                        : isHovered
-                          ? 'text-white'
-                          : 'text-zinc-400 hover:text-zinc-100'
+                      ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
+                      : isHovered
+                        ? 'text-white'
+                        : 'text-zinc-400 hover:text-zinc-100'
                       }`}
                   >
                     {/* Raised Glossy Beveled Hover Capsule */}
@@ -227,10 +237,10 @@ export default function Navbar({
                           onMouseEnter={() => setHoveredItem(item.id)}
                           onClick={() => scrollToSection(item.id)}
                           className={`relative px-3 sm:px-3.5 py-2 rounded-full text-xs font-extrabold tracking-[0.14em] uppercase transition-colors duration-150 cursor-pointer whitespace-nowrap z-10 transform-gpu ${isActive
-                              ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
-                              : isHovered
-                                ? 'text-white'
-                                : 'text-zinc-400 hover:text-zinc-100'
+                            ? 'text-cyan-300 drop-shadow-[0_0_10px_rgba(6,182,212,0.9)]'
+                            : isHovered
+                              ? 'text-white'
+                              : 'text-zinc-400 hover:text-zinc-100'
                             }`}
                         >
                           {isHovered && (
@@ -299,7 +309,7 @@ export default function Navbar({
             </button>
           </div>
         </div>
-      </header>
+      </motion.header>
 
       {/* Mobile Cyber Drawer Menu */}
       <AnimatePresence>
@@ -343,8 +353,8 @@ export default function Navbar({
                       key={item.id}
                       onClick={() => scrollToSection(item.id)}
                       className={`flex items-center justify-between px-4 py-3 rounded-2xl text-xs font-extrabold tracking-[0.16em] uppercase transition-all text-left ${isActive
-                          ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
-                          : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
+                        ? 'bg-cyan-500/15 text-cyan-300 border border-cyan-400/30 shadow-[0_0_15px_rgba(6,182,212,0.2)]'
+                        : 'text-zinc-300 hover:bg-white/[0.06] hover:text-white'
                         }`}
                     >
                       <div className="flex items-center gap-3">

@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Inter, Outfit } from 'next/font/google';
+import { Inter, Outfit, Great_Vibes } from 'next/font/google';
 import './globals.css';
 
 const inter = Inter({
@@ -12,6 +12,13 @@ const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
   weight: ['400', '600', '700', '800', '900'],
+  display: 'swap',
+});
+
+const greatVibes = Great_Vibes({
+  subsets: ['latin'],
+  variable: '--font-calligraphy',
+  weight: ['400'],
   display: 'swap',
 });
 
@@ -64,7 +71,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${outfit.variable} dark`} data-theme="violet">
+    <html lang="en" className={`${inter.variable} ${outfit.variable} ${greatVibes.variable} dark`} data-theme="violet">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />

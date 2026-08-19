@@ -5,17 +5,16 @@ import {
   ArrowUp,
   Mail,
   Sparkles,
-  Heart,
-  FileText,
 } from 'lucide-react';
 import { GitHubIcon, LinkedInIcon } from '@/components/Icons';
 import { personalInfo } from '@/data/portfolioData';
 
 interface FooterProps {
   onOpenResume: () => void;
+  onReplayIntro?: () => void;
 }
 
-export default function Footer({ onOpenResume }: FooterProps) {
+export default function Footer({ onOpenResume, onReplayIntro }: FooterProps) {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -86,6 +85,16 @@ export default function Footer({ onOpenResume }: FooterProps) {
             >
               Contact
             </button>
+            {onReplayIntro && (
+              <button
+                onClick={onReplayIntro}
+                className="hover:text-purple-300 transition-colors cursor-pointer flex items-center gap-1 text-purple-400/90 font-mono text-[11px]"
+                title="Replay intro typing animation"
+              >
+                <Sparkles className="w-3.5 h-3.5 text-purple-400" />
+                <span>Replay Intro</span>
+              </button>
+            )}
             <button
               onClick={onOpenResume}
               className="text-cyan-400 hover:text-cyan-300 font-semibold transition-colors cursor-pointer flex items-center gap-1"

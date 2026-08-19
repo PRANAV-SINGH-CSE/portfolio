@@ -10,7 +10,6 @@ import {
   BookOpen,
   Target,
   Sparkles,
-  CheckCircle2,
   Cpu,
   Layers,
   Activity,

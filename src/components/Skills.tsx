@@ -64,11 +64,10 @@ export default function Skills() {
       >
         <button
           onClick={() => setActiveCategory('all')}
-          className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-            activeCategory === 'all'
+          className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${activeCategory === 'all'
               ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.3)]'
               : 'liquid-glow-pill text-zinc-400 hover:text-white'
-          }`}
+            }`}
         >
           All Domains
         </button>
@@ -77,11 +76,10 @@ export default function Skills() {
           <button
             key={category.name}
             onClick={() => setActiveCategory(category.name.toLowerCase())}
-            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
-              activeCategory === category.name.toLowerCase()
+            className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${activeCategory === category.name.toLowerCase()
                 ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.3)]'
                 : 'liquid-glow-pill text-zinc-400 hover:text-white'
-            }`}
+              }`}
           >
             {category.name}
           </button>
@@ -131,16 +129,14 @@ export default function Skills() {
                     {cat.skills.map((skill) => (
                       <div
                         key={skill.name}
-                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-medium transition-all whitespace-nowrap ${
-                          skill.highlight
+                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-xl text-xs font-medium transition-all whitespace-nowrap ${skill.highlight
                             ? 'bg-white/[0.07] border border-cyan-400/30 text-white shadow-[0_0_10px_rgba(6,182,212,0.15)] hover:border-cyan-400/60'
                             : 'bg-white/[0.03] border border-white/5 text-zinc-300 hover:border-white/20'
-                        }`}
+                          }`}
                       >
                         <span
-                          className={`w-1.5 h-1.5 rounded-full shrink-0 ${
-                            skill.highlight ? 'bg-cyan-400 animate-pulse' : 'bg-zinc-500'
-                          }`}
+                          className={`w-1.5 h-1.5 rounded-full shrink-0 ${skill.highlight ? 'bg-cyan-400 animate-pulse' : 'bg-zinc-500'
+                            }`}
                         />
                         <span className="truncate">{skill.name}</span>
                       </div>

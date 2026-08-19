@@ -10,9 +10,7 @@ import {
   Download,
   Eye,
   Calendar,
-  Sparkles,
   Building2,
-  CheckCircle2,
   GraduationCap,
   ChevronDown,
 } from 'lucide-react';
@@ -39,8 +37,8 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
     activeCategory === 'all'
       ? certificatesData
       : certificatesData.filter(
-          (c) => c.category.toLowerCase() === activeCategory.toLowerCase()
-        );
+        (c) => c.category.toLowerCase() === activeCategory.toLowerCase()
+      );
 
   // Show only 3 certificates normally by default unless expanded
   const displayedCertificates =
@@ -114,8 +112,8 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
             cat === 'all'
               ? certificatesData.length
               : certificatesData.filter(
-                  (c) => c.category.toLowerCase() === cat.toLowerCase()
-                ).length;
+                (c) => c.category.toLowerCase() === cat.toLowerCase()
+              ).length;
 
           return (
             <button
@@ -124,17 +122,15 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
                 setActiveCategory(cat);
                 if (cat !== 'all') setShowAll(true);
               }}
-              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${
-                isActive
+              className={`px-4 py-2 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer whitespace-nowrap flex items-center gap-1.5 ${isActive
                   ? 'bg-gradient-to-r from-indigo-500/40 to-cyan-500/40 text-white border border-white/20 shadow-[0_0_15px_rgba(99,102,241,0.35)]'
                   : 'liquid-glow-pill text-zinc-400 hover:text-white'
-              }`}
+                }`}
             >
               <span>{cat === 'all' ? 'All Credentials' : cat}</span>
               <span
-                className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${
-                  isActive ? 'bg-cyan-400/30 text-white' : 'bg-white/10 text-zinc-400'
-                }`}
+                className={`text-[10px] font-mono px-1.5 py-0.2 rounded-full ${isActive ? 'bg-cyan-400/30 text-white' : 'bg-white/10 text-zinc-400'
+                  }`}
               >
                 {count}
               </span>
@@ -174,13 +170,12 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
                 <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                   {/* Issuer Badge */}
                   <span
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold backdrop-blur-md border shadow-md ${
-                      cert.issuerCategory === 'Infosys'
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold backdrop-blur-md border shadow-md ${cert.issuerCategory === 'Infosys'
                         ? 'bg-[#007cc3]/80 text-white border-cyan-400/40 shadow-cyan-500/20'
                         : cert.issuerCategory === 'CipherSchools'
-                        ? 'bg-[#6366f1]/85 text-white border-indigo-300/40 shadow-indigo-500/20'
-                        : 'bg-[#ff4e00]/80 text-white border-orange-300/40 shadow-orange-500/20'
-                    }`}
+                          ? 'bg-[#6366f1]/85 text-white border-indigo-300/40 shadow-indigo-500/20'
+                          : 'bg-[#ff4e00]/80 text-white border-orange-300/40 shadow-orange-500/20'
+                      }`}
                   >
                     <Building2 className="w-3 h-3" />
                     <span>{cert.issuerCategory}</span>
@@ -310,9 +305,8 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
                 : `Show More Certificates (+${filteredCertificates.length - 3} More)`}
             </span>
             <ChevronDown
-              className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${
-                showAll ? 'rotate-180 -translate-y-0.5' : ''
-              }`}
+              className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${showAll ? 'rotate-180 -translate-y-0.5' : ''
+                }`}
             />
           </button>
         </motion.div>
