@@ -267,7 +267,13 @@ export default function CertificateModal({
                           ? 'bg-blue-500/15 text-blue-300 border-blue-400/30'
                           : certificate.issuerCategory === 'CipherSchools'
                           ? 'bg-indigo-500/15 text-indigo-300 border-indigo-400/30'
-                          : 'bg-orange-500/15 text-orange-300 border-orange-400/30'
+                          : certificate.issuerCategory === 'iamneo'
+                          ? 'bg-orange-500/15 text-orange-300 border-orange-400/30'
+                          : certificate.issuerCategory === 'IIIT Allahabad'
+                          ? 'bg-emerald-500/15 text-emerald-300 border-emerald-400/30'
+                          : certificate.issuerCategory === 'Tech Veda'
+                          ? 'bg-purple-500/15 text-purple-300 border-purple-400/30'
+                          : 'bg-cyan-500/15 text-cyan-300 border-cyan-400/30'
                       }`}
                     >
                       {certificate.issuerCategory}

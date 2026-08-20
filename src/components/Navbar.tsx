@@ -33,7 +33,7 @@ const primaryNavItems = [
 ];
 
 const collapsibleNavItems = [
-  { id: 'certificates', label: 'CERTIFICATES', icon: Award },
+  { id: 'certificates', label: 'CERTIFICATES & WORKSHOPS', icon: Award },
   { id: 'contact', label: 'CONTACT', icon: Mail },
 ];
 
@@ -268,7 +268,7 @@ export default function Navbar({
                     exit={{ opacity: 0, scale: 0.8 }}
                     transition={{ duration: 0.15 }}
                     className="flex items-center px-1 text-zinc-500 hover:text-cyan-400 transition-colors cursor-pointer select-none"
-                    title="Hover to view more options (Certificates & Contact)"
+                    title="Hover to view more options (Certificates & Workshops, Contact)"
                   >
                     <span className="inline-flex items-center gap-0.5 text-[9px] font-mono tracking-widest font-bold opacity-60">
                       •••

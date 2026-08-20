@@ -141,7 +141,7 @@ export default function Home() {
         {/* 7. Education */}
         <Education />
 
-        {/* 8. Verified Certifications & Credentials */}
+        {/* 8. Verified Certificates & Workshops */}
         <Certificates onSelectCertificate={(cert) => setSelectedCertificate(cert)} />
 
         {/* 9. GitHub Activity & Live Code Metrics */}

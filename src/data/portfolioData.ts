@@ -727,6 +727,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/Next.js certification.pdf',
     previewImage: '/certificates/previews/nextjs.png',
     category: 'Full-Stack & Web',
+    type: 'Certification',
     skills: [
       'Next.js',
       'React.js',
@@ -740,6 +741,54 @@ export const certificatesData: CertificateItem[] = [
     signatory: 'CipherSchools Technical Directorate',
   },
   {
+    id: 'react-techveda',
+    title: '15+ Hours MOOC on React.js & Proctored Examination',
+    issuer: 'Tech Veda',
+    issuerCategory: 'Tech Veda',
+    issueDate: 'March 22, 2025',
+    credentialId: 'TV/MAR25/RJ/360',
+    hours: '15+ Hours',
+    pdfUrl: '/certificates/React.pdf',
+    previewImage: '/certificates/previews/react.png',
+    category: 'Full-Stack & Web',
+    type: 'MOOC',
+    skills: [
+      'React.js',
+      'Component Lifecycle',
+      'Hooks & State',
+      'Virtual DOM',
+      'Frontend Architecture',
+      'Proctored Examination',
+    ],
+    description:
+      'Certificate of Appreciation awarded for demonstrating excellence in completing 15+ hours of comprehensive MOOC on React.js, including passing an official proctored examination covering modern React architecture, reusable component workflows, and reactive state management.',
+    signatory: 'Tech Veda Assessment Directorate',
+  },
+  {
+    id: 'workshop-genai-iiita',
+    title: '5th International Workshop on Generative AI & Human Robot Interactions',
+    issuer: 'Center for Intelligent Robotics, IIIT Allahabad',
+    collaborator: 'IHFC & I-RAS HUB',
+    issuerCategory: 'IIIT Allahabad',
+    issueDate: 'February 14–16, 2025',
+    period: '14 to 16 February 2025',
+    pdfUrl: '/certificates/CIR Online Certificate - Pranav Singh.pdf',
+    previewImage: '/certificates/previews/workshop-cir.png',
+    category: 'Workshops & AI',
+    type: 'Workshop',
+    skills: [
+      'Generative AI',
+      'Human-Robot Interaction (HRI)',
+      'Intelligent Robotics',
+      'Multimodal AI',
+      'Computer Vision & Perception',
+      'AI Research & Systems',
+    ],
+    description:
+      'Official Certificate of Participation for completing the Fifth International Workshop on Generative AI and Human Robot Interactions held at the Center for Intelligent Robotics (CIR), Indian Institute of Information Technology, Allahabad (IIIT Allahabad), exploring generative models, robotic perception, multimodal frameworks, and human-robot collaborative intelligence.',
+    signatory: 'Prof. G. C. Nandi (Program Chairperson) & Prof. Vrijendra Singh (Program Co-Chairperson)',
+  },
+  {
     id: 'dsa-iamneo',
     title: 'Data Structure and Algorithm',
     issuer: 'iamneo (An NIIT Venture)',
@@ -751,6 +800,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/dsa.pdf',
     previewImage: '/certificates/previews/dsa.png',
     category: 'Data Structures & Algorithms',
+    type: 'Certification',
     skills: [
       'Data Structures',
       'Algorithms',
@@ -773,6 +823,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/dbms.pdf',
     previewImage: '/certificates/previews/dbms.png',
     category: 'Databases & Systems',
+    type: 'Certification',
     skills: [
       'DBMS',
       'Relational Models',
@@ -797,6 +848,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/java.pdf',
     previewImage: '/certificates/previews/java.png',
     category: 'Languages & OOP',
+    type: 'Certification',
     skills: [
       'Java',
       'OOP Design',
@@ -819,6 +871,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/c++.pdf',
     previewImage: '/certificates/previews/c++.png',
     category: 'Languages & OOP',
+    type: 'Certification',
     skills: [
       'C++',
       'Object-Oriented Programming',
@@ -844,6 +897,7 @@ export const certificatesData: CertificateItem[] = [
     pdfUrl: '/certificates/C.pdf',
     previewImage: '/certificates/previews/c.png',
     category: 'Languages & OOP',
+    type: 'Certification',
     skills: [
       'C Programming',
       'Pointers & Dynamic Memory',

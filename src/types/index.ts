@@ -106,16 +106,31 @@ export interface CertificateItem {
   title: string;
   issuer: string;
   collaborator?: string;
-  issuerCategory: 'Infosys' | 'iamneo' | 'CipherSchools' | 'Academic' | 'Industry';
+  issuerCategory:
+    | 'Infosys'
+    | 'iamneo'
+    | 'CipherSchools'
+    | 'Tech Veda'
+    | 'IIIT Allahabad'
+    | 'Academic'
+    | 'Industry'
+    | string;
   issueDate: string;
   period?: string;
   credentialId?: string;
   verificationUrl?: string;
   pdfUrl: string;
   previewImage: string;
-  category: 'Full-Stack & Web' | 'Languages & OOP' | 'Data Structures & Algorithms' | 'Databases & Systems';
+  category:
+    | 'Full-Stack & Web'
+    | 'Workshops & AI'
+    | 'Languages & OOP'
+    | 'Data Structures & Algorithms'
+    | 'Databases & Systems'
+    | string;
   skills: string[];
   description: string;
   signatory?: string;
   hours?: string;
+  type?: 'Certification' | 'Workshop' | 'MOOC';
 }

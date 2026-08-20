@@ -78,7 +78,7 @@ EDUCATION
 ${resumeData.education.institution}
 ${resumeData.education.degree}
 
-CERTIFICATIONS & CREDENTIALS
+CERTIFICATES, WORKSHOPS & CREDENTIALS
 ${certificatesData.map((c) => `• ${c.title} — ${c.issuer} (${c.issueDate})${c.credentialId ? ` [ID: ${c.credentialId}]` : ''}`).join('\n')}
     `.trim();
 
@@ -335,10 +335,10 @@ ${certificatesData.map((c) => `• ${c.title} — ${c.issuer} (${c.issueDate})${
                 </div>
               </div>
 
-              {/* Certifications & Credentials */}
+              {/* Certificates, Workshops & Credentials */}
               <div className="space-y-2">
                 <h2 className="text-xs font-mono uppercase tracking-wider text-cyan-400 print:text-zinc-900 font-bold border-b border-white/5 pb-1">
-                  VERIFIED CERTIFICATIONS & CREDENTIALS
+                  VERIFIED CERTIFICATES, WORKSHOPS & CREDENTIALS
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-zinc-300 print:text-zinc-800">
                   {certificatesData.map((c) => (

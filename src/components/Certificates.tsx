@@ -28,6 +28,7 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
   const categories = [
     'all',
     'Full-Stack & Web',
+    'Workshops & AI',
     'Languages & OOP',
     'Data Structures & Algorithms',
     'Databases & Systems',
@@ -64,11 +65,11 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           <span>Accredited Expertise</span>
         </div>
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight">
-          <span className="liquid-glass-text">Verified</span>{' '}
-          <span className="liquid-glass-text-cyan">Certifications & Credentials</span>
+          <span className="liquid-glass-text">Certificates &</span>{' '}
+          <span className="liquid-glass-text-cyan">Workshops</span>
         </h2>
         <p className="text-sm sm:text-base text-zinc-400 max-w-2xl">
-          Officially verified industry & academic accreditations across Next.js Full Stack, Data Structures, Algorithms, Database Management, and Systems Engineering.
+          Officially verified industry accreditations, international workshops, and professional certifications across Next.js, React.js, Generative AI & Robotics, Data Structures, Algorithms, Databases, and Systems.
         </p>
       </motion.div>
 
@@ -81,19 +82,19 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
         className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-10"
       >
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-gradient-cyan">6</span>
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Certifications</p>
+          <span className="text-2xl sm:text-3xl font-extrabold text-gradient-cyan">{certificatesData.length}</span>
+          <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Credentials</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
           <span className="text-2xl sm:text-3xl font-extrabold text-emerald-400">100%</span>
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">ID & QR Verified</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-purple-400">3</span>
-          <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Industry Bodies</p>
+          <span className="text-2xl sm:text-3xl font-extrabold text-purple-400">5</span>
+          <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Institutes & Bodies</p>
         </div>
         <div className="p-4 rounded-2xl liquid-glass-card border border-white/10 text-center space-y-1">
-          <span className="text-2xl sm:text-3xl font-extrabold text-amber-400">4</span>
+          <span className="text-2xl sm:text-3xl font-extrabold text-amber-400">5</span>
           <p className="text-xs font-mono uppercase tracking-wider text-zinc-400">Core Disciplines</p>
         </div>
       </motion.div>
@@ -170,12 +171,19 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
                 <div className="absolute top-3 left-3 right-3 flex items-center justify-between pointer-events-none">
                   {/* Issuer Badge */}
                   <span
-                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold backdrop-blur-md border shadow-md ${cert.issuerCategory === 'Infosys'
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold backdrop-blur-md border shadow-md ${
+                      cert.issuerCategory === 'Infosys'
                         ? 'bg-[#007cc3]/80 text-white border-cyan-400/40 shadow-cyan-500/20'
                         : cert.issuerCategory === 'CipherSchools'
-                          ? 'bg-[#6366f1]/85 text-white border-indigo-300/40 shadow-indigo-500/20'
-                          : 'bg-[#ff4e00]/80 text-white border-orange-300/40 shadow-orange-500/20'
-                      }`}
+                        ? 'bg-[#6366f1]/85 text-white border-indigo-300/40 shadow-indigo-500/20'
+                        : cert.issuerCategory === 'iamneo'
+                        ? 'bg-[#ff4e00]/80 text-white border-orange-300/40 shadow-orange-500/20'
+                        : cert.issuerCategory === 'IIIT Allahabad'
+                        ? 'bg-emerald-600/80 text-white border-emerald-400/40 shadow-emerald-500/20'
+                        : cert.issuerCategory === 'Tech Veda'
+                        ? 'bg-purple-600/80 text-white border-purple-400/40 shadow-purple-500/20'
+                        : 'bg-cyan-600/80 text-white border-cyan-300/40 shadow-cyan-500/20'
+                    }`}
                   >
                     <Building2 className="w-3 h-3" />
                     <span>{cert.issuerCategory}</span>
@@ -301,8 +309,8 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
           >
             <span>
               {showAll
-                ? 'Hide Certificates (Show Less)'
-                : `Show More Certificates (+${filteredCertificates.length - 3} More)`}
+                ? 'Hide Items (Show Less)'
+                : `Show More Certificates & Workshops (+${filteredCertificates.length - 3} More)`}
             </span>
             <ChevronDown
               className={`w-4 h-4 text-cyan-400 group-hover:translate-y-0.5 transition-transform duration-300 ${showAll ? 'rotate-180 -translate-y-0.5' : ''
@@ -329,7 +337,7 @@ export default function Certificates({ onSelectCertificate }: CertificatesProps)
               Academic & Professional Continuous Learning
             </h4>
             <p className="text-xs sm:text-sm text-zinc-400 max-w-xl">
-              All credentials are backed by rigorous coursework at Lovely Professional University, Infosys Springboard, and iamneo testing platforms.
+              All credentials are backed by rigorous coursework and workshops at IIIT Allahabad, Lovely Professional University, Infosys Springboard, Tech Veda, and iamneo testing platforms.
             </p>
           </div>
         </div>
