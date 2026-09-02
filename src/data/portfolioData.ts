@@ -480,6 +480,8 @@ export const featuredProjects: Project[] = [
   },
 ];
 
+export const projectsData = featuredProjects;
+
 export const experienceItems: ExperienceItem[] = [
   {
     id: 'hackiware-internship',

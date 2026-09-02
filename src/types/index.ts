@@ -134,3 +134,34 @@ export interface CertificateItem {
   hours?: string;
   type?: 'Certification' | 'Workshop' | 'MOOC';
 }
+
+export type AIActionType =
+  | 'navigate'
+  | 'open_certificate'
+  | 'open_project'
+  | 'open_resume'
+  | 'filter_certificates'
+  | 'copy_email'
+  | 'trigger_confetti';
+
+export interface AIActionPayload {
+  type: AIActionType;
+  target?: string;
+  label?: string;
+  data?: Record<string, unknown>;
+}
+
+export interface AIMessage {
+  id: string;
+  sender: 'user' | 'assistant';
+  text: string;
+  timestamp: number;
+  actions?: AIActionPayload[];
+  isStreaming?: boolean;
+}
+
+export interface AIQuickPrompt {
+  icon: string;
+  label: string;
+  prompt: string;
+}

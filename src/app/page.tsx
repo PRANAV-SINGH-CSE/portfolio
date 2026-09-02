@@ -21,6 +21,7 @@ import ScrollProgressBar from '@/components/ScrollProgressBar';
 import ScrollToTop from '@/components/ScrollToTop';
 import GamingCursor from '@/components/GamingCursor';
 import IntroSplash from '@/components/IntroSplash';
+import AIAssistant from '@/components/AIAssistant';
 import { Project, CertificateItem } from '@/types';
 import { certificatesData } from '@/data/portfolioData';
 
@@ -33,6 +34,15 @@ export default function Home() {
   const [selectedCertificate, setSelectedCertificate] = useState<CertificateItem | null>(null);
 
   const isModalOpen = Boolean(isResumeOpen || selectedProject || selectedCertificate || showIntro);
+
+  const handleNavigateSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const yOffset = -70;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
 
   // Ensure page starts from top (0, 0)
   useEffect(() => {
@@ -159,6 +169,14 @@ export default function Home() {
 
       {/* Floating Smooth Scroll-To-Top Button */}
       <ScrollToTop />
+
+      {/* Interactive AI Portfolio Copilot & Navigation Assistant */}
+      <AIAssistant
+        onNavigateSection={handleNavigateSection}
+        onSelectCertificate={(cert) => setSelectedCertificate(cert)}
+        onSelectProject={(project) => setSelectedProject(project)}
+        onOpenResume={() => setIsResumeOpen(true)}
+      />
 
       {/* 5. Root Architectural Case Study Modal */}
       <CaseStudyModal
