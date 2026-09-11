@@ -22,6 +22,7 @@ import { GitHubIcon } from './Icons';
 interface NavbarProps {
   activeSection: string;
   onOpenResume: () => void;
+  onOpenProfile: () => void;
   isHidden?: boolean;
   isIntroDone?: boolean;
 }
@@ -54,6 +55,7 @@ const mobileNavItems = [
 export default function Navbar({
   activeSection,
   onOpenResume,
+  onOpenProfile,
   isHidden = false,
   isIntroDone = true,
 }: NavbarProps) {
@@ -132,15 +134,16 @@ export default function Navbar({
               setHoveredItem(null);
             }}
             transition={{
-              layout: { type: 'spring', stiffness: 380, damping: 32, mass: 0.8 },
+              layout: { duration: 0.35, ease: [0.25, 0.1, 0.25, 1] },
             }}
-            className="hidden md:flex items-center gap-1 lg:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu select-none"
+            className="hidden md:flex items-center gap-1 lg:gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_12px_40px_rgba(0,0,0,0.75),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl transform-gpu select-none overflow-hidden"
           >
-            {/* 1. Integrated Brand Avatar & Name */}
-            <button
-              onClick={() => scrollToSection('hero')}
+            {/* 1. Integrated Brand Avatar & Name — Opens Profile Modal */}
+            <motion.button
+              layout="position"
+              onClick={onOpenProfile}
               className="flex items-center gap-2 px-1.5 py-1 rounded-full hover:bg-white/[0.06] transition-all cursor-pointer group shrink-0"
-              aria-label="Scroll to top"
+              aria-label="Open profile"
             >
               <div className="relative w-7 h-7 lg:w-8 lg:h-8 rounded-full overflow-hidden border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.35)] group-hover:scale-105 group-hover:border-cyan-300 transition-all shrink-0 bg-[#0e1424]">
                 <Image
@@ -155,7 +158,7 @@ export default function Navbar({
               <span className="font-black tracking-[0.16em] text-[11px] lg:text-xs text-white uppercase group-hover:text-cyan-300 transition-colors whitespace-nowrap hidden sm:inline">
                 PRANAV<span className="hidden xl:inline"> SINGH</span>
               </span>
-            </button>
+            </motion.button>
 
             {/* Vertical Hairline Divider */}
             <div className="h-5 w-[1px] bg-white/20 mx-0.5 lg:mx-1 shrink-0" />
@@ -200,33 +203,30 @@ export default function Navbar({
             </div>
 
             {/* 3. Collapsible / Expandable Nav Links (CERTIFICATES & CONTACT) */}
-            <AnimatePresence initial={false}>
+            <AnimatePresence initial={false} mode="popLayout">
               {isExpanded ? (
                 <motion.div
                   key="expanded-nav-group"
-                  initial={{ opacity: 0, width: 0, scale: 0.94, filter: 'blur(4px)' }}
+                  layout
+                  initial={{ opacity: 0, scale: 0.92, filter: 'blur(4px)' }}
                   animate={{
                     opacity: 1,
-                    width: 'auto',
                     scale: 1,
                     filter: 'blur(0px)',
                     transition: {
-                      width: { type: 'spring', stiffness: 380, damping: 30, mass: 0.8 },
-                      opacity: { duration: 0.2, delay: 0.03 },
-                      scale: { duration: 0.2 },
-                      filter: { duration: 0.16 },
+                      opacity: { duration: 0.22, ease: 'easeOut' },
+                      scale: { duration: 0.25, ease: [0.25, 0.1, 0.25, 1] },
+                      filter: { duration: 0.18 },
                     },
                   }}
                   exit={{
                     opacity: 0,
-                    width: 0,
-                    scale: 0.94,
+                    scale: 0.92,
                     filter: 'blur(4px)',
                     transition: {
-                      opacity: { duration: 0.14 },
-                      width: { type: 'spring', stiffness: 400, damping: 35, mass: 0.8 },
-                      scale: { duration: 0.14 },
-                      filter: { duration: 0.14 },
+                      opacity: { duration: 0.15, ease: 'easeIn' },
+                      scale: { duration: 0.18, ease: [0.4, 0, 1, 1] },
+                      filter: { duration: 0.12 },
                     },
                   }}
                   className="flex items-center gap-0.5 lg:gap-1 overflow-hidden whitespace-nowrap"
@@ -271,6 +271,7 @@ export default function Navbar({
               ) : (
                 <motion.div
                   key="collapsed-indicator"
+                  layout
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
@@ -301,11 +302,11 @@ export default function Navbar({
 
           {/* MOBILE (< md): Sleek Responsive Floating Top Bar */}
           <div className="flex md:hidden items-center justify-between w-full px-3 py-2 rounded-full bg-gradient-to-b from-[#182035]/95 via-[#0e1424]/98 to-[#060914] border border-white/[0.16] shadow-[0_10px_35px_rgba(0,0,0,0.7),inset_0_1.5px_1px_rgba(255,255,255,0.25)] backdrop-blur-2xl">
-            {/* Mobile Brand Button */}
+            {/* Mobile Brand Button — Opens Profile Modal */}
             <button
-              onClick={() => scrollToSection('hero')}
+              onClick={onOpenProfile}
               className="flex items-center gap-2.5 cursor-pointer group"
-              aria-label="Scroll to top"
+              aria-label="Open profile"
             >
               <div className="relative w-7 h-7 rounded-full overflow-hidden border border-cyan-400/50 shadow-[0_0_10px_rgba(6,182,212,0.35)] shrink-0 bg-[#0e1424]">
                 <Image

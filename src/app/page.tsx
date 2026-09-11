@@ -17,6 +17,7 @@ import Footer from '@/components/Footer';
 import ResumeModal from '@/components/ResumeModal';
 import CaseStudyModal from '@/components/CaseStudyModal';
 import CertificateModal from '@/components/CertificateModal';
+import ProfileModal from '@/components/ProfileModal';
 import ScrollProgressBar from '@/components/ScrollProgressBar';
 import ScrollToTop from '@/components/ScrollToTop';
 import GamingCursor from '@/components/GamingCursor';
@@ -32,8 +33,9 @@ export default function Home() {
   const [isResumeOpen, setIsResumeOpen] = useState<boolean>(false);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedCertificate, setSelectedCertificate] = useState<CertificateItem | null>(null);
+  const [isProfileOpen, setIsProfileOpen] = useState<boolean>(false);
 
-  const isModalOpen = Boolean(isResumeOpen || selectedProject || selectedCertificate || showIntro);
+  const isModalOpen = Boolean(isResumeOpen || selectedProject || selectedCertificate || showIntro || isProfileOpen);
 
   const handleNavigateSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -104,6 +106,7 @@ export default function Home() {
       <Navbar
         activeSection={activeSection}
         onOpenResume={() => setIsResumeOpen(true)}
+        onOpenProfile={() => setIsProfileOpen(true)}
         isHidden={isModalOpen}
         isIntroDone={isIntroDone}
       />
@@ -196,6 +199,12 @@ export default function Home() {
       <ResumeModal
         isOpen={isResumeOpen}
         onClose={() => setIsResumeOpen(false)}
+      />
+
+      {/* Profile Card Modal */}
+      <ProfileModal
+        isOpen={isProfileOpen}
+        onClose={() => setIsProfileOpen(false)}
       />
     </div>
   );
